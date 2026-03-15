@@ -14,6 +14,9 @@ JOBS = [
     {"id": "insurance_underwriter_jr", "name_zh": "初级保险核保员", "name_en": "Junior Insurance Underwriter", "group": "finance", "category": "A", "score": 4},
     {"id": "bank_teller", "name_zh": "银行柜员", "name_en": "Bank Teller", "group": "finance", "category": "A", "score": 4},
     {"id": "quant_trader", "name_zh": "量化交易员", "name_en": "Quantitative Trader", "group": "finance", "category": "A", "score": 4},
+    {"id": "ap_clerk", "name_zh": "应付账款员", "name_en": "Accounts Payable Clerk", "group": "finance", "category": "A", "score": 4},
+    {"id": "ar_clerk", "name_zh": "应收账款员", "name_en": "Accounts Receivable Clerk", "group": "finance", "category": "A", "score": 4},
+    {"id": "junior_auditor", "name_zh": "初级审计员", "name_en": "Junior Auditor", "group": "finance", "category": "A", "score": 4},
     # 服务/销售
     {"id": "customer_service", "name_zh": "客服代表", "name_en": "Customer Service Rep", "group": "service", "category": "A", "score": 4},
     {"id": "telemarketer", "name_zh": "电话销售", "name_en": "Telemarketer", "group": "service", "category": "A", "score": 4},
@@ -22,41 +25,66 @@ JOBS = [
     {"id": "admin_assistant", "name_zh": "行政助理", "name_en": "Administrative Assistant", "group": "admin", "category": "A", "score": 4},
     {"id": "librarian_clerk", "name_zh": "图书管理员", "name_en": "Library Clerk", "group": "admin", "category": "A", "score": 4},
     {"id": "warehouse_clerk", "name_zh": "仓库管理员", "name_en": "Warehouse Clerk", "group": "admin", "category": "A", "score": 4},
+    # 医疗
     {"id": "medical_coder", "name_zh": "医疗编码员", "name_en": "Medical Coder", "group": "medical", "category": "A", "score": 4},
+    {"id": "medical_records", "name_zh": "病历管理员", "name_en": "Medical Records Specialist", "group": "medical", "category": "A", "score": 4},
+    # 法律
     {"id": "legal_doc_reviewer", "name_zh": "法律文件审查员", "name_en": "Legal Document Reviewer", "group": "legal", "category": "A", "score": 4},
+    {"id": "paralegal", "name_zh": "律师助理", "name_en": "Paralegal / Legal Secretary", "group": "legal", "category": "A", "score": 4},
+    {"id": "compliance_specialist", "name_zh": "合规专员", "name_en": "Compliance Specialist", "group": "legal", "category": "A", "score": 4},
+    # 创意
     {"id": "copywriter_standard", "name_zh": "标准化文案撰写", "name_en": "Standard Copywriter", "group": "creative", "category": "A", "score": 4},
     {"id": "translator_general", "name_zh": "通用文档翻译", "name_en": "General Translator", "group": "creative", "category": "A", "score": 4},
 
     # ── B 类 (3 分) — 中高风险，AI 辅助重构区 ──
     # 技术/IT
     {"id": "mid_software_engineer", "name_zh": "中级软件工程师", "name_en": "Mid-level Software Engineer", "group": "tech", "category": "B", "score": 3},
+    {"id": "frontend_developer", "name_zh": "前端开发工程师", "name_en": "Front-End Developer", "group": "tech", "category": "B", "score": 3},
     {"id": "product_manager", "name_zh": "产品经理", "name_en": "Product Manager", "group": "tech", "category": "B", "score": 3},
     {"id": "it_ops_manager", "name_zh": "IT运维经理", "name_en": "IT Operations Manager", "group": "tech", "category": "B", "score": 3},
+    {"id": "dba", "name_zh": "数据库管理员", "name_en": "Database Administrator", "group": "tech", "category": "B", "score": 3},
+    {"id": "network_admin", "name_zh": "网络管理员", "name_en": "Network Administrator", "group": "tech", "category": "B", "score": 3},
     # 金融/财务
     {"id": "financial_planner", "name_zh": "财务规划分析师", "name_en": "Financial Planning Analyst", "group": "finance", "category": "B", "score": 3},
     {"id": "cpa", "name_zh": "注册会计师", "name_en": "Certified Public Accountant", "group": "finance", "category": "B", "score": 3},
     {"id": "risk_analyst", "name_zh": "风控分析师", "name_en": "Risk Analyst", "group": "finance", "category": "B", "score": 3},
     {"id": "compliance_officer", "name_zh": "合规官", "name_en": "Compliance Officer", "group": "finance", "category": "B", "score": 3},
+    {"id": "loan_officer", "name_zh": "贷款审批员", "name_en": "Loan Officer", "group": "finance", "category": "B", "score": 3},
+    {"id": "credit_analyst", "name_zh": "信贷分析师", "name_en": "Credit Analyst", "group": "finance", "category": "B", "score": 3},
     # 管理/行政
     {"id": "project_manager", "name_zh": "项目经理", "name_en": "Project Manager", "group": "admin", "category": "B", "score": 3},
     {"id": "business_analyst", "name_zh": "商业分析师", "name_en": "Business Analyst", "group": "admin", "category": "B", "score": 3},
     {"id": "hrbp", "name_zh": "人力资源业务伙伴", "name_en": "HR Business Partner", "group": "admin", "category": "B", "score": 3},
     {"id": "supply_chain_mgr", "name_zh": "供应链经理", "name_en": "Supply Chain Manager", "group": "admin", "category": "B", "score": 3},
+    {"id": "ops_manager", "name_zh": "运营经理", "name_en": "Operations Manager", "group": "admin", "category": "B", "score": 3},
+    {"id": "hr_generalist", "name_zh": "人力资源专员", "name_en": "HR Generalist / Recruiter", "group": "admin", "category": "B", "score": 3},
+    {"id": "finance_manager", "name_zh": "财务经理", "name_en": "Finance Manager / Controller", "group": "admin", "category": "B", "score": 3},
     # 医疗
     {"id": "pharmacist", "name_zh": "药剂师", "name_en": "Pharmacist", "group": "medical", "category": "B", "score": 3},
     {"id": "radiologist_tech", "name_zh": "放射科技师", "name_en": "Radiology Technician", "group": "medical", "category": "B", "score": 3},
     # 创意/媒体
     {"id": "graphic_designer", "name_zh": "平面设计师", "name_en": "Graphic Designer", "group": "creative", "category": "B", "score": 3},
+    {"id": "ux_designer", "name_zh": "UX/UI设计师", "name_en": "UX/UI Designer", "group": "creative", "category": "B", "score": 3},
     {"id": "journalist", "name_zh": "新闻记者", "name_en": "Journalist", "group": "creative", "category": "B", "score": 3},
     {"id": "content_ops", "name_zh": "内容运营", "name_en": "Content Operations", "group": "creative", "category": "B", "score": 3},
-    {"id": "marketing_specialist", "name_zh": "市场营销专员", "name_en": "Marketing Specialist", "group": "service", "category": "B", "score": 3},
+    {"id": "video_editor", "name_zh": "视频编辑/动画设计", "name_en": "Video Editor / Motion Graphics", "group": "creative", "category": "B", "score": 3},
+    {"id": "social_media_mgr", "name_zh": "社交媒体经理", "name_en": "Social Media Manager", "group": "creative", "category": "B", "score": 3},
     {"id": "junior_architect", "name_zh": "初级建筑设计师", "name_en": "Junior Architect", "group": "creative", "category": "B", "score": 3},
+    # 服务
+    {"id": "marketing_specialist", "name_zh": "市场营销专员", "name_en": "Marketing Specialist", "group": "service", "category": "B", "score": 3},
+    {"id": "call_center_sup", "name_zh": "呼叫中心主管", "name_en": "Call Center Supervisor", "group": "service", "category": "B", "score": 3},
+    # 法律
+    {"id": "contract_analyst", "name_zh": "合同分析师", "name_en": "Contract Analyst", "group": "legal", "category": "B", "score": 3},
+    # 教育
+    {"id": "training_specialist", "name_zh": "培训师/教学设计师", "name_en": "Training Specialist / Instructional Designer", "group": "education", "category": "B", "score": 3},
 
     # ── C 类 (2 分) — 低风险，护城河稳固 ──
     {"id": "senior_sales", "name_zh": "高级销售/客户总监", "name_en": "Senior Sales / Account Director", "group": "service", "category": "C", "score": 2},
     {"id": "psychologist", "name_zh": "心理咨询师/治疗师", "name_en": "Psychologist / Therapist", "group": "medical", "category": "C", "score": 2},
     {"id": "professor", "name_zh": "大学教授", "name_en": "University Professor", "group": "education", "category": "C", "score": 2},
     {"id": "k12_teacher", "name_zh": "中小学教师", "name_en": "K-12 Teacher", "group": "education", "category": "C", "score": 2},
+    {"id": "school_principal", "name_zh": "学校校长/教育管理者", "name_en": "School Principal / Administrator", "group": "education", "category": "C", "score": 2},
+    {"id": "tutor", "name_zh": "家教/助教", "name_en": "Tutor / Teaching Assistant", "group": "education", "category": "C", "score": 2},
     {"id": "c_suite", "name_zh": "企业高管(CEO/CTO)", "name_en": "C-Suite Executive", "group": "admin", "category": "C", "score": 2},
     {"id": "senior_consultant", "name_zh": "高级管理咨询顾问", "name_en": "Senior Management Consultant", "group": "admin", "category": "C", "score": 2},
     {"id": "trial_lawyer", "name_zh": "诉讼/谈判律师", "name_en": "Trial / Negotiation Lawyer", "group": "legal", "category": "C", "score": 2},
@@ -64,15 +92,21 @@ JOBS = [
     {"id": "exec_recruiter", "name_zh": "高管猎头/招聘总监", "name_en": "Executive Recruiter", "group": "service", "category": "C", "score": 2},
     {"id": "social_worker", "name_zh": "社会工作者", "name_en": "Social Worker", "group": "service", "category": "C", "score": 2},
     {"id": "negotiator", "name_zh": "谈判专家", "name_en": "Negotiation Specialist", "group": "service", "category": "C", "score": 2},
+    {"id": "retail_manager", "name_zh": "零售店长/门店经理", "name_en": "Retail Store Manager", "group": "service", "category": "C", "score": 2},
     {"id": "senior_architect", "name_zh": "高级架构师", "name_en": "Senior Software Architect", "group": "tech", "category": "C", "score": 2},
     {"id": "vp_product", "name_zh": "资深产品VP", "name_en": "VP of Product", "group": "tech", "category": "C", "score": 2},
+    # 制造/物流
+    {"id": "truck_driver", "name_zh": "卡车司机/快递员", "name_en": "Truck Driver / Delivery Driver", "group": "manufacturing", "category": "C", "score": 2},
+    {"id": "warehouse_worker", "name_zh": "仓库工人/叉车操作员", "name_en": "Warehouse Worker / Forklift Operator", "group": "manufacturing", "category": "C", "score": 2},
 
     # ── D 类 (1 分) — 极低风险，物理/高责任壁垒 ──
     {"id": "surgeon", "name_zh": "外科医生", "name_en": "Surgeon", "group": "medical", "category": "D", "score": 1},
     {"id": "er_doctor", "name_zh": "急诊室医生", "name_en": "ER Doctor", "group": "medical", "category": "D", "score": 1},
     {"id": "registered_nurse", "name_zh": "注册护士", "name_en": "Registered Nurse", "group": "medical", "category": "D", "score": 1},
+    {"id": "nursing_assistant", "name_zh": "护理员/护工", "name_en": "Nursing Assistant / CNA", "group": "medical", "category": "D", "score": 1},
     {"id": "physical_therapist", "name_zh": "物理治疗师", "name_en": "Physical Therapist", "group": "medical", "category": "D", "score": 1},
     {"id": "dentist", "name_zh": "牙医", "name_en": "Dentist", "group": "medical", "category": "D", "score": 1},
+    {"id": "lab_technician", "name_zh": "实验室技术员", "name_en": "Laboratory Technician", "group": "medical", "category": "D", "score": 1},
     {"id": "chef", "name_zh": "厨师/主厨", "name_en": "Chef / Head Chef", "group": "manufacturing", "category": "D", "score": 1},
     {"id": "construction_worker", "name_zh": "建筑工人/木工", "name_en": "Construction Worker / Carpenter", "group": "manufacturing", "category": "D", "score": 1},
     {"id": "electrician", "name_zh": "电工", "name_en": "Electrician", "group": "manufacturing", "category": "D", "score": 1},
@@ -83,6 +117,8 @@ JOBS = [
     {"id": "firefighter", "name_zh": "消防员", "name_en": "Firefighter", "group": "manufacturing", "category": "D", "score": 1},
     {"id": "police_officer", "name_zh": "警察", "name_en": "Police Officer", "group": "service", "category": "D", "score": 1},
     {"id": "pilot", "name_zh": "飞行员", "name_en": "Pilot", "group": "manufacturing", "category": "D", "score": 1},
+    {"id": "server_food", "name_zh": "餐厅服务员", "name_en": "Restaurant Server / Waiter", "group": "service", "category": "D", "score": 1},
+    {"id": "security_guard", "name_zh": "保安", "name_en": "Security Guard", "group": "service", "category": "D", "score": 1},
 ]
 
 # Job ID -> job lookup
