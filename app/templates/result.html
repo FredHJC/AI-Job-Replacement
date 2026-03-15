@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<main class="min-h-screen flex items-center justify-center px-4 py-16"
+<main class="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12 sm:py-16"
       x-data="{
           result: null,
           loaded: false,
@@ -14,7 +14,6 @@
           },
           get gaugeOffset() {
               if (!this.result) return 283;
-              // Map score 6-24 to gauge (283 = empty, 0 = full)
               const pct = (this.result.total_score - 6) / 18;
               return 283 - (283 * pct);
           },
@@ -40,7 +39,7 @@
           },
           questionLabels(idx) {
               const zh = ['Q1 职业类型', 'Q2 产出形式', 'Q3 知识类型', 'Q4 委托能力', 'Q5 容错率', 'Q6 职级定位'];
-              const en = ['Q1 Job Type', 'Q2 Output Form', 'Q3 Knowledge', 'Q4 Delegation', 'Q5 Error Tolerance', 'Q6 Career Level'];
+              const en = ['Q1 Job Type', 'Q2 Output', 'Q3 Knowledge', 'Q4 Delegation', 'Q5 Tolerance', 'Q6 Level'];
               return this.lang === 'zh' ? zh[idx] : en[idx];
           },
           barWidth(score) {
@@ -64,8 +63,8 @@
 
     <div x-show="result && loaded" class="w-full max-w-lg">
         <!-- Score gauge -->
-        <div class="text-center mb-10 fade-in">
-            <div class="relative inline-block w-48 h-48 mb-6">
+        <div class="text-center mb-8 sm:mb-10 fade-in">
+            <div class="relative inline-block w-36 h-36 sm:w-48 sm:h-48 mb-4 sm:mb-6">
                 <svg class="w-full h-full -rotate-90" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="45" fill="none" stroke="#E5E0DA" stroke-width="6"/>
                     <circle cx="50" cy="50" r="45" fill="none"
@@ -76,44 +75,44 @@
                             class="gauge-circle"/>
                 </svg>
                 <div class="absolute inset-0 flex flex-col items-center justify-center">
-                    <span class="text-5xl font-serif font-bold score-reveal" x-text="result.total_score"></span>
-                    <span class="text-sm text-muted mt-1" x-text="'/ 24'"></span>
+                    <span class="text-4xl sm:text-5xl font-serif font-bold score-reveal" x-text="result.total_score"></span>
+                    <span class="text-xs sm:text-sm text-muted mt-1" x-text="'/ 24'"></span>
                 </div>
             </div>
 
             <!-- Job name -->
-            <p class="text-sm text-muted mb-2" x-text="jobName"></p>
+            <p class="text-xs sm:text-sm text-muted mb-2" x-text="jobName"></p>
 
             <!-- Risk label -->
-            <h1 class="font-serif text-2xl md:text-3xl font-bold mb-2 fade-in fade-in-delay-1"
+            <h1 class="font-serif text-xl sm:text-2xl md:text-3xl font-bold mb-2 fade-in fade-in-delay-1 leading-snug"
                 :style="`color: ${gaugeColor}`"
                 x-text="riskLabel">
             </h1>
         </div>
 
         <!-- Advice -->
-        <div class="bg-white rounded-2xl border border-border p-6 md:p-8 mb-8 fade-in fade-in-delay-2">
-            <h3 class="font-serif font-bold text-lg mb-3">
+        <div class="bg-white rounded-2xl border border-border p-5 sm:p-6 md:p-8 mb-6 sm:mb-8 fade-in fade-in-delay-2">
+            <h3 class="font-serif font-bold text-base sm:text-lg mb-2 sm:mb-3">
                 <span x-show="lang === 'zh'">分析与建议</span>
                 <span x-show="lang === 'en'" x-cloak>Analysis & Advice</span>
             </h3>
-            <p class="text-ink2 leading-relaxed whitespace-pre-line" x-text="advice"></p>
+            <p class="text-sm sm:text-base text-ink2 leading-relaxed whitespace-pre-line" x-text="advice"></p>
         </div>
 
         <!-- Score breakdown -->
-        <div class="bg-white rounded-2xl border border-border p-6 md:p-8 mb-8 fade-in fade-in-delay-3">
-            <h3 class="font-serif font-bold text-lg mb-5">
+        <div class="bg-white rounded-2xl border border-border p-5 sm:p-6 md:p-8 mb-6 sm:mb-8 fade-in fade-in-delay-3">
+            <h3 class="font-serif font-bold text-base sm:text-lg mb-4 sm:mb-5">
                 <span x-show="lang === 'zh'">得分拆解</span>
                 <span x-show="lang === 'en'" x-cloak>Score Breakdown</span>
             </h3>
-            <div class="space-y-4">
+            <div class="space-y-3 sm:space-y-4">
                 <template x-for="(score, idx) in result.breakdown" :key="idx">
                     <div>
-                        <div class="flex justify-between text-sm mb-1.5">
+                        <div class="flex justify-between text-xs sm:text-sm mb-1 sm:mb-1.5">
                             <span class="text-muted" x-text="questionLabels(idx)"></span>
                             <span class="font-medium" x-text="score + ' / 4'"></span>
                         </div>
-                        <div class="h-2.5 bg-warm rounded-full overflow-hidden">
+                        <div class="h-2 sm:h-2.5 bg-warm rounded-full overflow-hidden">
                             <div class="h-full rounded-full bar-fill"
                                  :style="`width: ${barWidth(score)}; background-color: ${barColor(score)}; animation-delay: ${idx * 0.1}s`">
                             </div>
@@ -126,21 +125,21 @@
         <!-- Actions -->
         <div class="flex flex-col sm:flex-row gap-3 fade-in fade-in-delay-4">
             <button @click="copyResult()"
-                    class="flex-1 px-6 py-3.5 rounded-full border border-border bg-white text-ink font-medium hover:border-ink/30 transition-all text-center">
+                    class="flex-1 px-6 py-3 sm:py-3.5 rounded-full border border-border bg-white text-ink text-sm sm:text-base font-medium hover:border-ink/30 active:scale-95 transition-all text-center">
                 <span x-show="!copied && lang === 'zh'">复制分享结果</span>
                 <span x-show="!copied && lang === 'en'" x-cloak>Copy & Share</span>
                 <span x-show="copied && lang === 'zh'">已复制!</span>
                 <span x-show="copied && lang === 'en'" x-cloak>Copied!</span>
             </button>
             <a href="/questionnaire"
-               class="flex-1 px-6 py-3.5 rounded-full bg-ink text-cream font-medium hover:bg-ink2 transition-all text-center">
+               class="flex-1 px-6 py-3 sm:py-3.5 rounded-full bg-ink text-cream text-sm sm:text-base font-medium hover:bg-ink2 active:scale-95 transition-all text-center">
                 <span x-show="lang === 'zh'">重新测试</span>
                 <span x-show="lang === 'en'" x-cloak>Retake Quiz</span>
             </a>
         </div>
 
         <!-- Footer -->
-        <p class="text-center text-sm text-muted/50 mt-10 fade-in fade-in-delay-5">
+        <p class="text-center text-xs sm:text-sm text-muted/50 mt-8 sm:mt-10 fade-in fade-in-delay-5">
             <span x-show="lang === 'zh'">本测试仅供参考，不构成职业建议</span>
             <span x-show="lang === 'en'" x-cloak>This quiz is for reference only and does not constitute career advice</span>
         </p>
