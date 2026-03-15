@@ -1,0 +1,117 @@
+/* Hide Alpine.js elements until ready */
+[x-cloak] {
+    display: none !important;
+}
+
+/* Smooth page transitions */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #D1CCC6;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #A8A39D;
+}
+
+/* Question slide transitions */
+.slide-enter {
+    opacity: 0;
+    transform: translateX(40px);
+}
+.slide-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.slide-leave {
+    opacity: 1;
+    transform: translateX(0);
+}
+.slide-leave-active {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Option card hover effect */
+.option-card {
+    transition: all 0.2s ease;
+}
+.option-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+.option-card.selected {
+    border-color: #2A6B6B;
+    background-color: #E8F4F4;
+    transform: scale(1.01);
+}
+
+/* Job chip styles */
+.job-chip {
+    transition: all 0.15s ease;
+}
+.job-chip:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.job-chip.selected {
+    background-color: #2A6B6B;
+    color: white;
+    border-color: #2A6B6B;
+    transform: scale(1.05);
+}
+
+/* Progress bar animation */
+.progress-fill {
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Score reveal animation */
+@keyframes score-count {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+}
+.score-reveal {
+    animation: score-count 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Gauge animation */
+@keyframes gauge-fill {
+    from { stroke-dashoffset: 283; }
+}
+.gauge-circle {
+    animation: gauge-fill 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Bar chart animation */
+@keyframes bar-grow {
+    from { width: 0; }
+}
+.bar-fill {
+    animation: bar-grow 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Fade in */
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+    animation: fade-in 0.5s ease forwards;
+}
+.fade-in-delay-1 { animation-delay: 0.1s; opacity: 0; }
+.fade-in-delay-2 { animation-delay: 0.2s; opacity: 0; }
+.fade-in-delay-3 { animation-delay: 0.3s; opacity: 0; }
+.fade-in-delay-4 { animation-delay: 0.4s; opacity: 0; }
+.fade-in-delay-5 { animation-delay: 0.5s; opacity: 0; }

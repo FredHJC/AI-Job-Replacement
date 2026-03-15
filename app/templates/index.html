@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="min-h-screen flex items-center justify-center px-4">
+    <div class="max-w-xl w-full text-center py-20">
+        <!-- Title -->
+        <h1 class="font-serif font-bold leading-tight mb-6">
+            <span class="block text-4xl md:text-5xl" x-show="lang === 'zh'">我的工作</span>
+            <span class="block text-4xl md:text-5xl" x-show="lang === 'zh'">会被 AI 替代吗？</span>
+            <span class="block text-4xl md:text-5xl" x-show="lang === 'en'" x-cloak>Will AI</span>
+            <span class="block text-4xl md:text-5xl" x-show="lang === 'en'" x-cloak>Replace My Job?</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-lg text-muted leading-relaxed mb-4 max-w-md mx-auto" x-show="lang === 'zh'">
+            客观场景自测问卷 — 6 道题，2 分钟
+        </p>
+        <p class="text-lg text-muted leading-relaxed mb-4 max-w-md mx-auto" x-show="lang === 'en'" x-cloak>
+            A self-assessment quiz — 6 questions, 2 minutes
+        </p>
+
+        <!-- Description -->
+        <p class="text-base text-muted/80 leading-relaxed mb-12 max-w-lg mx-auto" x-show="lang === 'zh'">
+            通过分析您的职业类型、工作产出形式、知识依赖度、任务委托能力、容错率和职级定位，
+            科学评估您的岗位在 AI 时代的替代风险等级。
+        </p>
+        <p class="text-base text-muted/80 leading-relaxed mb-12 max-w-lg mx-auto" x-show="lang === 'en'" x-cloak>
+            By analyzing your job type, work output, knowledge dependency, task delegation potential,
+            error tolerance, and career level, we scientifically assess your AI replacement risk.
+        </p>
+
+        <!-- CTA -->
+        <a href="/questionnaire"
+           class="inline-block px-10 py-4 bg-ink text-cream font-medium text-lg rounded-full hover:bg-ink2 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
+            <span x-show="lang === 'zh'">开始测试</span>
+            <span x-show="lang === 'en'" x-cloak>Start Quiz</span>
+        </a>
+
+        <!-- Footer note -->
+        <p class="mt-16 text-sm text-muted/50" x-show="lang === 'zh'">
+            本测试仅供参考，不构成职业建议
+        </p>
+        <p class="mt-16 text-sm text-muted/50" x-show="lang === 'en'" x-cloak>
+            This quiz is for reference only and does not constitute career advice
+        </p>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN" x-data="{ lang: localStorage.getItem('lang') || 'zh' }" :lang="lang === 'zh' ? 'zh-CN' : 'en'">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title x-text="lang === 'zh' ? '我的工作会被AI替代吗？' : 'Will AI Replace My Job?'"></title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+
+    <!-- OG Meta -->
+    <meta property="og:title" content="Will AI Replace My Job? | 我的工作会被AI替代吗？">
+    <meta property="og:description" content="Take this 6-question quiz to find out your AI replacement risk score. | 6道题测出你的职业AI替代风险。">
+    <meta property="og:type" content="website">
+    <meta name="description" content="A scientific 6-question self-assessment quiz to evaluate your job's AI replacement risk. | 客观场景自测问卷，科学评估你的岗位AI替代风险。">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (Play CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FAFAF5',
+                        ink: '#1A1A1A',
+                        ink2: '#3D3D3D',
+                        muted: '#6B6B6B',
+                        accent: '#2A6B6B',
+                        'accent-light': '#E8F4F4',
+                        'accent-hover': '#1F5252',
+                        warm: '#F5F0EB',
+                        border: '#E5E0DA',
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif SC"', 'Georgia', 'serif'],
+                        sans: ['"Noto Sans SC"', '"Inter"', 'system-ui', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/static/css/custom.css">
+</head>
+<body class="bg-cream text-ink font-sans antialiased min-h-screen">
+    <!-- Language toggle -->
+    <nav class="fixed top-0 right-0 z-50 p-4">
+        <button
+            @click="lang = lang === 'zh' ? 'en' : 'zh'; localStorage.setItem('lang', lang)"
+            class="px-3 py-1.5 text-sm font-medium rounded-full bg-white/80 backdrop-blur border border-border text-muted hover:text-ink hover:border-ink/30 transition-all duration-200"
+            x-text="lang === 'zh' ? 'EN' : '中文'"
+        ></button>
+    </nav>
+
+    {% block content %}{% endblock %}
+</body>
+</html>

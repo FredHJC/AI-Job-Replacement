@@ -1,0 +1,167 @@
+QUESTIONS = [
+    {
+        "id": 2,
+        "text_zh": '在您每天的工作时间中，占比最大的"主要产出物"是什么形式？',
+        "text_en": "What form does your primary daily work output take?",
+        "subtitle_zh": "考察工作暴露度",
+        "subtitle_en": "Assessing work exposure to AI",
+        "options": [
+            {
+                "label": "A",
+                "text_zh": "纯数字化的标准文件：如代码段、统计表格、常规数据总结报告、标准化的客服文字/语音回复。",
+                "text_en": "Standardized digital files: code snippets, statistical tables, routine data reports, standardized customer service scripts.",
+                "score": 4,
+            },
+            {
+                "label": "B",
+                "text_zh": "混合型产出：基于数字化的初稿，但我必须加入公司内部未公开的商业信息或个人经验进行深度修改才能交付。",
+                "text_en": "Hybrid output: starting from a digital draft, but I must add proprietary business insights or personal experience before delivery.",
+                "score": 3,
+            },
+            {
+                "label": "C",
+                "text_zh": "情感与关系产出：需要面对面沟通、情绪安抚、说服他人或指导他人的互动结果。",
+                "text_en": "Emotional & relational output: face-to-face communication, emotional support, persuasion, or mentoring outcomes.",
+                "score": 2,
+            },
+            {
+                "label": "D",
+                "text_zh": "实体与物理产出：依赖物理世界中的动手操作、空间移动或实体产品制造。",
+                "text_en": "Physical output: hands-on work in the physical world, spatial movement, or tangible product manufacturing.",
+                "score": 1,
+            },
+        ],
+    },
+    {
+        "id": 3,
+        "text_zh": '当您在工作中遇到一个"新问题"或"突发状况"时，您解决它主要依赖什么？',
+        "text_en": "When you encounter a new problem or unexpected situation at work, what do you primarily rely on to solve it?",
+        "subtitle_zh": "考察知识类型",
+        "subtitle_en": "Assessing knowledge type",
+        "options": [
+            {
+                "label": "A",
+                "text_zh": "查阅既定规则：主要依赖公司手册、过往的标准案例、代码文档、法律条文或教科书上的明确规定（显性知识）。",
+                "text_en": "Consulting established rules: relying on company manuals, standard cases, code documentation, legal texts, or textbook definitions (explicit knowledge).",
+                "score": 4,
+            },
+            {
+                "label": "B",
+                "text_zh": "规则加微调：先看标准流程，然后根据自己一两年的工作经验进行简单的参数或方法微调。",
+                "text_en": "Rules plus fine-tuning: start with standard procedures, then make minor adjustments based on a few years of work experience.",
+                "score": 3,
+            },
+            {
+                "label": "C",
+                "text_zh": '纯个人经验与直觉：主要依赖多年积累的"行业直觉"、没写在纸上的"潜规则"、复杂的人际博弈或应对突发物理状况的肌肉记忆（隐性知识）。',
+                "text_en": "Pure experience and intuition: relying on years of 'industry gut feeling,' unwritten rules, complex interpersonal dynamics, or muscle memory for physical emergencies (tacit knowledge).",
+                "score": 2,
+            },
+            {
+                "label": "D",
+                "text_zh": "完全靠应急反应与肌肉记忆：在突发的物理危险或极端时间压力下，靠身体本能和数十年的动手经验瞬间做出反应（如急诊抢救、建筑工地避险）。",
+                "text_en": "Pure emergency reflexes and muscle memory: instant physical reactions under extreme time pressure or danger, built from decades of hands-on experience (e.g., ER triage, construction site emergencies).",
+                "score": 1,
+            },
+        ],
+    },
+    {
+        "id": 4,
+        "text_zh": '假设公司给您配备了一个"极其聪明、打字极快，但毫无实际工作经验的实习生"（可看作现阶段的 AI），您目前的工作有多少可以直接交给他独立完成？',
+        "text_en": "If your company assigned you a 'super smart, fast-typing intern with zero real-world experience' (think: current AI), how much of your work could they handle independently?",
+        "subtitle_zh": "考察任务前沿边界",
+        "subtitle_en": "Assessing task frontier boundary",
+        "options": [
+            {
+                "label": "A",
+                "text_zh": "70%以上：我的工作步骤很清晰，只要把背景资料给他，他能直接产出大部分最终成果（如：写基础代码、信息归类、常规答疑）。",
+                "text_en": "Over 70%: My work steps are clear — given the right context, they could produce most of the final output (e.g., basic coding, data sorting, routine Q&A).",
+                "score": 4,
+            },
+            {
+                "label": "B",
+                "text_zh": "30%-70%：他可以帮我做大量的数据收集、头脑风暴或写个初稿，但我必须花大量时间去审查里面的核心商业逻辑和隐蔽错误。",
+                "text_en": "30-70%: They can help with data collection, brainstorming, or drafting, but I need to spend significant time reviewing core business logic and catching hidden errors.",
+                "score": 3,
+            },
+            {
+                "label": "C",
+                "text_zh": "30%以下：我的工作高度依赖对客户隐藏情绪的察觉、商业利益的权衡，或者需要动手操作，实习生完全帮不上忙。",
+                "text_en": "Under 30%: My work heavily depends on reading hidden client emotions, balancing business interests, or hands-on operations — the intern can barely help.",
+                "score": 2,
+            },
+            {
+                "label": "D",
+                "text_zh": "10%以下：我的工作几乎完全依赖现场的物理操作、即时的人际互动或高度机密信息，实习生不仅帮不上忙，还可能造成安全风险。",
+                "text_en": "Under 10%: My work relies almost entirely on on-site physical operations, real-time human interaction, or highly classified information — the intern could even pose safety risks.",
+                "score": 1,
+            },
+        ],
+    },
+    {
+        "id": 5,
+        "text_zh": "如果您的最终工作产出出现了错误，后果和责任界定通常是怎样的？",
+        "text_en": "If your final work output contains an error, what are the typical consequences and liability?",
+        "subtitle_zh": "考察容错率与责任属性",
+        "subtitle_en": "Assessing error tolerance and liability",
+        "options": [
+            {
+                "label": "A",
+                "text_zh": "容错率较高/错误成本低：产出主要是供内部参考、前期草稿或代码测试，出错的代价可以通过低成本的快速重试来解决。",
+                "text_en": "High tolerance / low cost: output is mainly internal references, early drafts, or test code — errors can be fixed with quick, low-cost retries.",
+                "score": 4,
+            },
+            {
+                "label": "B",
+                "text_zh": "容错率中等：错误会导致项目延期、返工或内部批评，但通常有上级或后续的测试流程来兜底。",
+                "text_en": "Medium tolerance: errors may cause project delays, rework, or internal criticism, but there are usually supervisors or later test phases to catch them.",
+                "score": 3,
+            },
+            {
+                "label": "C",
+                "text_zh": "容错率极低且绑定个人：一旦出错会导致重大安全事故、法律诉讼或巨额财产损失，且必须由您个人承担明确的法律与道德责任（如：医疗事故、最终战略拍板、重金合同签署）。",
+                "text_en": "Very low tolerance, personal liability: errors could cause major safety incidents, lawsuits, or massive financial losses, with clear personal legal and moral responsibility (e.g., medical malpractice, strategic decisions, high-value contracts).",
+                "score": 2,
+            },
+            {
+                "label": "D",
+                "text_zh": "零容错且涉及生命安全：任何失误都可能直接导致人员伤亡，需要在不可逆条件下做出实时判断（如手术操作、高空作业、紧急救援指挥）。",
+                "text_en": "Zero tolerance, life-or-death: any mistake could directly cause injury or death, requiring real-time judgment under irreversible conditions (e.g., surgery, high-altitude work, emergency rescue command).",
+                "score": 1,
+            },
+        ],
+    },
+    {
+        "id": 6,
+        "text_zh": "您目前的岗位在企业职级中处于什么阶段？",
+        "text_en": "Where does your current position sit in the corporate hierarchy?",
+        "subtitle_zh": "考察人才梯队位置",
+        "subtitle_en": "Assessing talent pipeline position",
+        "options": [
+            {
+                "label": "A",
+                "text_zh": "处于职业生涯早期（0-3年经验），主要负责基础执行、搜集资料和处理标准化任务。",
+                "text_en": "Early career (0-3 years): primarily responsible for basic execution, research, and standardized tasks.",
+                "score": 4,
+            },
+            {
+                "label": "B",
+                "text_zh": "中级岗位，承担一部分管理与协调职能，需要结合经验对初级产出进行审核与把关。",
+                "text_en": "Mid-level: handling some management and coordination, reviewing and validating junior output based on experience.",
+                "score": 3,
+            },
+            {
+                "label": "C",
+                "text_zh": "资深岗位或决策层，拥有广泛的行业人脉，主要工作是战略规划、指导他人和解决复杂的例外情况。",
+                "text_en": "Senior / decision-maker: broad industry network, primarily focused on strategic planning, mentoring, and resolving complex exceptions.",
+                "score": 2,
+            },
+            {
+                "label": "D",
+                "text_zh": "行业权威/顶级专家，拥有不可替代的声誉资本和数十年积累的独特洞察力，是行业标准的制定者或最终仲裁者。",
+                "text_en": "Industry authority / top expert: irreplaceable reputation capital and decades of unique insight — you set industry standards or serve as the final arbiter.",
+                "score": 1,
+            },
+        ],
+    },
+]
