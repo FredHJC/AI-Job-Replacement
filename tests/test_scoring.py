@@ -3,7 +3,7 @@ from app.models import QuizAnswers
 from app.scoring import compute_result
 
 
-def make_answers(job_id="junior_programmer", q2="A", q3="A", q4="A", q5="A", q6="A"):
+def make_answers(job_id="programmer", q2="A", q3="A", q4="A", q5="A", q6="A"):
     return QuizAnswers(job_id=job_id, q2=q2, q3=q3, q4=q4, q5=q5, q6=q6)
 
 
@@ -22,7 +22,7 @@ def test_min_score():
 
 
 def test_mid_score():
-    result = compute_result(make_answers(job_id="mid_software_engineer", q2="B", q3="B", q4="B", q5="B", q6="B"))
+    result = compute_result(make_answers(job_id="backend_dev", q2="B", q3="B", q4="B", q5="B", q6="B"))
     assert result.total_score == 18
     assert result.risk_level == "high"
 
@@ -37,8 +37,8 @@ def test_bilingual_output():
     result = compute_result(make_answers())
     assert "极高风险区" in result.risk_label_zh
     assert "Extreme Risk Zone" in result.risk_label_en
-    assert result.job_name_zh == "初级程序员"
-    assert result.job_name_en == "Junior Programmer"
+    assert result.job_name_zh == "程序员"
+    assert result.job_name_en == "Programmer"
 
 
 def test_unknown_job_raises():
@@ -47,16 +47,28 @@ def test_unknown_job_raises():
 
 
 def test_all_risk_boundaries():
-    # 20 = extreme threshold
-    result = compute_result(make_answers(job_id="junior_programmer", q2="A", q3="A", q4="A", q5="A", q6="A"))
-    assert result.risk_level == "extreme"  # 24
+    # 24 = extreme
+    result = compute_result(make_answers(job_id="programmer", q2="A", q3="A", q4="A", q5="A", q6="A"))
+    assert result.risk_level == "extreme"
 
-    # 14 = high threshold (3+3+2+3+2+3 = 16)
-    result = compute_result(make_answers(job_id="mid_software_engineer", q2="B", q3="C", q4="B", q5="C", q6="B"))
+    # 16 = high (3+3+2+3+2+3)
+    result = compute_result(make_answers(job_id="backend_dev", q2="B", q3="C", q4="B", q5="C", q6="B"))
     assert result.total_score == 16
     assert result.risk_level == "high"
 
-    # 8 = low threshold
+    # 7 = minimal
     result = compute_result(make_answers(job_id="surgeon", q2="C", q3="D", q4="D", q5="D", q6="D"))
     assert result.total_score == 7
     assert result.risk_level == "minimal"
+
+
+def test_government_jobs():
+    result = compute_result(make_answers(job_id="civil_servant", q2="B", q3="B", q4="B", q5="B", q6="B"))
+    assert result.total_score == 18
+    assert result.job_name_zh == "公务员(科员)"
+
+
+def test_finance_expanded():
+    result = compute_result(make_answers(job_id="ib_analyst", q2="A", q3="A", q4="A", q5="A", q6="A"))
+    assert result.total_score == 23
+    assert result.job_name_en == "Investment Banking Analyst"
