@@ -7,6 +7,8 @@
         jobs: {{ jobs | tojson }},
         jobGroups: {{ job_groups | tojson }},
         questions: {{ questions | tojson }},
+        overrideJobs: {{ override_jobs | tojson }},
+        consistencyWarnings: {{ consistency_warnings | tojson }},
     };
 </script>
 <script src="/static/js/questionnaire.js"></script>
@@ -161,6 +163,37 @@
                 <span x-show="lang === 'zh'">上一题</span>
                 <span x-show="lang === 'en'" x-cloak>Previous</span>
             </button>
+        </div>
+    </div>
+
+    <!-- Consistency warning modal -->
+    <div x-show="warningText" x-cloak
+         class="fixed inset-0 z-50 flex items-center justify-center bg-ink/30 backdrop-blur-sm px-4"
+         @click.self="dismissWarning(false)">
+        <div class="bg-white rounded-2xl border border-border p-6 sm:p-8 max-w-md w-full shadow-xl"
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100">
+            <div class="flex items-start gap-3 mb-4">
+                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                    </svg>
+                </div>
+                <p class="text-sm sm:text-base text-ink2 leading-relaxed" x-text="warningText"></p>
+            </div>
+            <div class="flex gap-3">
+                <button @click="dismissWarning(false)"
+                        class="flex-1 px-4 py-2.5 text-sm rounded-full border border-border text-muted hover:text-ink hover:border-ink/30 transition-all">
+                    <span x-show="lang === 'zh'">重新选择</span>
+                    <span x-show="lang === 'en'" x-cloak>Change Answer</span>
+                </button>
+                <button @click="dismissWarning(true)"
+                        class="flex-1 px-4 py-2.5 text-sm rounded-full bg-ink text-cream hover:bg-ink2 transition-all">
+                    <span x-show="lang === 'zh'">确认无误</span>
+                    <span x-show="lang === 'en'" x-cloak>Confirm</span>
+                </button>
+            </div>
         </div>
     </div>
 </main>

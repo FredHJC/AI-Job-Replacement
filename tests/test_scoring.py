@@ -72,3 +72,21 @@ def test_finance_expanded():
     result = compute_result(make_answers(job_id="ib_analyst", q2="A", q3="A", q4="A", q5="A", q6="A"))
     assert result.total_score == 23
     assert result.job_name_en == "Investment Banking Analyst"
+
+
+def test_override_military():
+    result = compute_result(make_answers(job_id="military"))
+    assert result.risk_level == "override"
+    assert result.total_score == 0
+    assert "军人" in result.job_name_zh
+
+
+def test_override_judge():
+    result = compute_result(make_answers(job_id="judge"))
+    assert result.risk_level == "override"
+    assert "司法" in result.advice_zh
+
+
+def test_override_firefighter():
+    result = compute_result(make_answers(job_id="firefighter"))
+    assert result.risk_level == "override"

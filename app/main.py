@@ -4,7 +4,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 
 from app.config import TEMPLATES_DIR, STATIC_DIR
-from app.data.jobs import JOBS, JOB_GROUPS
+from app.data.jobs import JOBS, JOB_GROUPS, OVERRIDE_JOBS, CONSISTENCY_WARNINGS
 from app.data.questions import QUESTIONS
 from app.scoring import compute_result
 from app.models import QuizAnswers
@@ -29,6 +29,8 @@ async def questionnaire(request: Request):
             "jobs": JOBS,
             "job_groups": JOB_GROUPS,
             "questions": QUESTIONS,
+            "override_jobs": list(OVERRIDE_JOBS.keys()),
+            "consistency_warnings": CONSISTENCY_WARNINGS,
         },
     )
 

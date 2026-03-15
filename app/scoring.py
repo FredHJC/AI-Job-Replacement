@@ -1,4 +1,4 @@
-from app.data.jobs import JOBS_BY_ID
+from app.data.jobs import JOBS_BY_ID, OVERRIDE_JOBS
 from app.data.questions import QUESTIONS
 from app.models import QuizAnswers, ScoreResult
 
@@ -101,6 +101,21 @@ def compute_result(answers: QuizAnswers) -> ScoreResult:
     job = JOBS_BY_ID.get(answers.job_id)
     if not job:
         raise ValueError(f"Unknown job ID: {answers.job_id}")
+
+    # Check for override jobs (bypass normal scoring)
+    override = OVERRIDE_JOBS.get(answers.job_id)
+    if override:
+        return ScoreResult(
+            total_score=0,
+            breakdown=[job["score"], 0, 0, 0, 0, 0],
+            risk_level="override",
+            risk_label_zh=override["label_zh"],
+            risk_label_en=override["label_en"],
+            advice_zh=override["result_zh"],
+            advice_en=override["result_en"],
+            job_name_zh=job["name_zh"],
+            job_name_en=job["name_en"],
+        )
 
     q1_score = job["score"]
 

@@ -148,6 +148,9 @@ JOBS = [
     {"id": "audio_engineer", "name_zh": "录音/音频工程师", "name_en": "Audio Engineer", "group": "creative", "category": "B", "score": 3},
     {"id": "voice_actor", "name_zh": "配音演员", "name_en": "Voice Actor", "group": "creative", "category": "B", "score": 3},
     {"id": "game_designer", "name_zh": "游戏设计师", "name_en": "Game Designer", "group": "creative", "category": "B", "score": 3},
+    {"id": "streamer", "name_zh": "主播/网红博主", "name_en": "Streamer / Influencer", "group": "creative", "category": "B", "score": 3},
+    {"id": "self_media", "name_zh": "自媒体创作者", "name_en": "Independent Content Creator", "group": "creative", "category": "B", "score": 3},
+    {"id": "podcast_host", "name_zh": "播客主持人", "name_en": "Podcast Host", "group": "creative", "category": "B", "score": 3},
     # C 类 (2)
     {"id": "creative_director", "name_zh": "创意总监", "name_en": "Creative Director", "group": "creative", "category": "C", "score": 2},
     {"id": "film_director", "name_zh": "导演", "name_en": "Film / TV Director", "group": "creative", "category": "C", "score": 2},
@@ -183,6 +186,9 @@ JOBS = [
     {"id": "hotel_staff", "name_zh": "酒店前台/管家", "name_en": "Hotel Receptionist / Concierge", "group": "service", "category": "D", "score": 1},
     {"id": "tour_guide", "name_zh": "导游", "name_en": "Tour Guide", "group": "service", "category": "D", "score": 1},
     {"id": "pet_groomer", "name_zh": "宠物美容师", "name_en": "Pet Groomer / Vet Assistant", "group": "service", "category": "D", "score": 1},
+    {"id": "massage_therapist", "name_zh": "按摩师/推拿师", "name_en": "Massage Therapist", "group": "service", "category": "D", "score": 1},
+    {"id": "beautician", "name_zh": "美容师/化妆师", "name_en": "Beautician / Makeup Artist", "group": "service", "category": "D", "score": 1},
+    {"id": "yoga_instructor", "name_zh": "瑜伽教练", "name_en": "Yoga Instructor", "group": "service", "category": "D", "score": 1},
 
     # ══════════════════════════════════════════
     #  管理 / 行政
@@ -233,6 +239,77 @@ JOBS = [
 
 # Job ID -> job lookup
 JOBS_BY_ID = {job["id"]: job for job in JOBS}
+
+# ── Override jobs: these bypass normal scoring ──
+# If a user picks one of these, the quiz ends early with a special result
+OVERRIDE_JOBS = {
+    "military": {
+        "result_zh": "军人的岗位风险主要由地缘政治和国防政策决定，而非 AI 技术发展。AI 可能改变战争形态，但不会替代军人本身的存在意义。",
+        "result_en": "Military risk is driven by geopolitics and defense policy, not AI technology. AI may change the nature of warfare, but it won't replace the need for military personnel.",
+        "risk_level": "override",
+        "label_zh": "不适用 — 非 AI 替代风险范畴",
+        "label_en": "N/A — Outside AI Replacement Scope",
+    },
+    "gov_director": {
+        "result_zh": "政府部门领导的岗位更替由政治体制和组织人事决定，AI 不太可能直接替代行政决策层。AI 更多是作为决策辅助工具。",
+        "result_en": "Government leadership turnover is determined by political systems and organizational decisions. AI is unlikely to directly replace administrative decision-makers — it serves as a decision-support tool.",
+        "risk_level": "override",
+        "label_zh": "不适用 — 非 AI 替代风险范畴",
+        "label_en": "N/A — Outside AI Replacement Scope",
+    },
+    "judge": {
+        "result_zh": "法官的职能涉及宪法授权的司法裁判权，受法律体制的刚性保护。AI 可辅助法律检索和案例分析，但司法判决权不可委托给机器。",
+        "result_en": "Judges exercise constitutionally mandated judicial authority, protected by legal institutional rigidity. AI can assist with legal research, but judicial decision-making cannot be delegated to machines.",
+        "risk_level": "override",
+        "label_zh": "不适用 — 受制度刚性保护",
+        "label_en": "N/A — Protected by Institutional Rigidity",
+    },
+    "prosecutor": {
+        "result_zh": "检察官行使国家公诉权，受法律制度的刚性保护。AI 可辅助案件分析，但起诉决定权和法庭辩论不可由机器代行。",
+        "result_en": "Prosecutors exercise state prosecution authority, protected by legal systems. AI can assist case analysis, but prosecution decisions and courtroom advocacy cannot be performed by machines.",
+        "risk_level": "override",
+        "label_zh": "不适用 — 受制度刚性保护",
+        "label_en": "N/A — Protected by Institutional Rigidity",
+    },
+    "diplomat": {
+        "result_zh": "外交官代表国家主权行使外交权，其核心工作是国家间的人际博弈和政治谈判，完全不在 AI 替代的讨论范畴内。",
+        "result_en": "Diplomats exercise sovereign diplomatic authority. Their core work — interstate interpersonal dynamics and political negotiation — is entirely outside the scope of AI replacement.",
+        "risk_level": "override",
+        "label_zh": "不适用 — 非 AI 替代风险范畴",
+        "label_en": "N/A — Outside AI Replacement Scope",
+    },
+    "firefighter": {
+        "result_zh": "消防员的工作核心是在不可预测的物理危险环境中执行救援，需要极强的现场判断力和体能。这完全超出当前及可预见未来 AI 的能力边界。",
+        "result_en": "Firefighting is fundamentally about executing rescue operations in unpredictable physical danger, requiring extreme on-site judgment and physical capability — well beyond current and foreseeable AI capabilities.",
+        "risk_level": "override",
+        "label_zh": "不适用 — 完全超出 AI 能力边界",
+        "label_en": "N/A — Beyond AI Capability Frontier",
+    },
+}
+
+# ── Consistency rules ──
+# If Q1 job belongs to a group, warn if certain Q2-Q6 answers seem contradictory
+# Format: { job_group: [ (question_id, answer_label, warning_zh, warning_en) ] }
+CONSISTENCY_WARNINGS = {
+    # Tech/office jobs selecting "physical output"
+    "tech": [
+        (2, "D", "您选择的是技术类岗位，但交付物选择了实体/物理成果，请确认是否符合您的实际情况。",
+         "You selected a tech role but chose physical output — please confirm this matches your situation."),
+    ],
+    "finance": [
+        (2, "D", "您选择的是金融类岗位，但交付物选择了实体/物理成果，请确认是否符合您的实际情况。",
+         "You selected a finance role but chose physical output — please confirm this matches your situation."),
+    ],
+    # Physical jobs selecting "standardized digital output"
+    "manufacturing": [
+        (2, "A", "您选择的是体力劳动类岗位，但交付物选择了标准化信息产出，请确认是否符合您的实际情况。",
+         "You selected a physical labor role but chose standardized digital output — please confirm this matches your situation."),
+    ],
+    "medical": [
+        (2, "A", "您选择的是医疗类岗位，但交付物选择了标准化信息产出。如果您的工作确实以文档为主（如病历管理），可以忽略此提示。",
+         "You selected a medical role but chose standardized digital output. If your work is indeed document-focused (e.g., medical records), you can ignore this."),
+    ],
+}
 
 # Groups for UI display (order matters)
 JOB_GROUPS = [
