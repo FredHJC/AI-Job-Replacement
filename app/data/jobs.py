@@ -144,9 +144,16 @@ JOBS = [
     {"id": "social_media_mgr", "name_zh": "社交媒体运营", "name_en": "Social Media Manager", "group": "creative", "category": "B", "score": 3},
     {"id": "architect", "name_zh": "建筑设计师", "name_en": "Architect", "group": "creative", "category": "B", "score": 3},
     {"id": "photographer", "name_zh": "摄影师", "name_en": "Photographer", "group": "creative", "category": "B", "score": 3},
+    {"id": "music_producer", "name_zh": "音乐制作人", "name_en": "Music Producer", "group": "creative", "category": "B", "score": 3},
+    {"id": "audio_engineer", "name_zh": "录音/音频工程师", "name_en": "Audio Engineer", "group": "creative", "category": "B", "score": 3},
+    {"id": "voice_actor", "name_zh": "配音演员", "name_en": "Voice Actor", "group": "creative", "category": "B", "score": 3},
+    {"id": "game_designer", "name_zh": "游戏设计师", "name_en": "Game Designer", "group": "creative", "category": "B", "score": 3},
     # C 类 (2)
     {"id": "creative_director", "name_zh": "创意总监", "name_en": "Creative Director", "group": "creative", "category": "C", "score": 2},
     {"id": "film_director", "name_zh": "导演", "name_en": "Film / TV Director", "group": "creative", "category": "C", "score": 2},
+    {"id": "musician", "name_zh": "音乐家/演奏家", "name_en": "Musician / Performer", "group": "creative", "category": "C", "score": 2},
+    {"id": "actor", "name_zh": "演员", "name_en": "Actor", "group": "creative", "category": "C", "score": 2},
+    {"id": "stage_director", "name_zh": "舞台导演/编舞", "name_en": "Stage Director / Choreographer", "group": "creative", "category": "C", "score": 2},
 
     # ══════════════════════════════════════════
     #  服务 / 销售
@@ -160,6 +167,8 @@ JOBS = [
     {"id": "sales_rep", "name_zh": "销售代表", "name_en": "Sales Representative", "group": "service", "category": "B", "score": 3},
     {"id": "real_estate_agent", "name_zh": "房产经纪人", "name_en": "Real Estate Agent", "group": "service", "category": "B", "score": 3},
     {"id": "insurance_agent", "name_zh": "保险代理人", "name_en": "Insurance Agent", "group": "service", "category": "B", "score": 3},
+    {"id": "event_planner", "name_zh": "活动策划", "name_en": "Event Planner", "group": "service", "category": "B", "score": 3},
+    {"id": "travel_agent", "name_zh": "旅行顾问", "name_en": "Travel Agent", "group": "service", "category": "B", "score": 3},
     # C 类 (2)
     {"id": "account_director", "name_zh": "客户总监", "name_en": "Account Director", "group": "service", "category": "C", "score": 2},
     {"id": "exec_recruiter", "name_zh": "高管猎头", "name_en": "Executive Recruiter", "group": "service", "category": "C", "score": 2},
@@ -169,6 +178,11 @@ JOBS = [
     {"id": "police_officer", "name_zh": "警察", "name_en": "Police Officer", "group": "service", "category": "D", "score": 1},
     {"id": "server_food", "name_zh": "餐厅服务员", "name_en": "Restaurant Server", "group": "service", "category": "D", "score": 1},
     {"id": "security_guard", "name_zh": "保安", "name_en": "Security Guard", "group": "service", "category": "D", "score": 1},
+    {"id": "hairdresser", "name_zh": "理发师/美发师", "name_en": "Hairdresser / Barber", "group": "service", "category": "D", "score": 1},
+    {"id": "personal_trainer", "name_zh": "健身教练", "name_en": "Personal Trainer", "group": "service", "category": "D", "score": 1},
+    {"id": "hotel_staff", "name_zh": "酒店前台/管家", "name_en": "Hotel Receptionist / Concierge", "group": "service", "category": "D", "score": 1},
+    {"id": "tour_guide", "name_zh": "导游", "name_en": "Tour Guide", "group": "service", "category": "D", "score": 1},
+    {"id": "pet_groomer", "name_zh": "宠物美容师", "name_en": "Pet Groomer / Vet Assistant", "group": "service", "category": "D", "score": 1},
 
     # ══════════════════════════════════════════
     #  管理 / 行政
@@ -190,21 +204,31 @@ JOBS = [
     # ══════════════════════════════════════════
     #  制造 / 体力劳动
     # ══════════════════════════════════════════
-    # C 类 (2)
-    {"id": "truck_driver", "name_zh": "卡车司机/快递员", "name_en": "Truck Driver / Courier", "group": "manufacturing", "category": "C", "score": 2},
-    {"id": "warehouse_worker", "name_zh": "仓库工人/叉车操作员", "name_en": "Warehouse Worker", "group": "manufacturing", "category": "C", "score": 2},
-    # D 类 (1)
-    {"id": "chef", "name_zh": "厨师", "name_en": "Chef / Cook", "group": "manufacturing", "category": "D", "score": 1},
-    {"id": "construction_worker", "name_zh": "建筑工人/木工", "name_en": "Construction Worker", "group": "manufacturing", "category": "D", "score": 1},
+    # A 类 (4)
+    {"id": "assembly_worker", "name_zh": "流水线工人", "name_en": "Assembly Line Worker", "group": "manufacturing", "category": "A", "score": 4},
+    # C 类 (2) — 交通物流
+    {"id": "truck_driver", "name_zh": "卡车司机", "name_en": "Truck Driver", "group": "manufacturing", "category": "C", "score": 2},
+    {"id": "courier", "name_zh": "快递员/外卖骑手", "name_en": "Courier / Delivery Rider", "group": "manufacturing", "category": "C", "score": 2},
+    {"id": "taxi_driver", "name_zh": "出租车/网约车司机", "name_en": "Taxi / Rideshare Driver", "group": "manufacturing", "category": "C", "score": 2},
+    {"id": "warehouse_worker", "name_zh": "仓库工人", "name_en": "Warehouse Worker", "group": "manufacturing", "category": "C", "score": 2},
+    # D 类 (1) — 餐饮
+    {"id": "chef", "name_zh": "厨师/炒锅师傅", "name_en": "Chef / Cook", "group": "manufacturing", "category": "D", "score": 1},
+    {"id": "pastry_chef", "name_zh": "甜品师/烘焙师", "name_en": "Pastry Chef / Baker", "group": "manufacturing", "category": "D", "score": 1},
+    {"id": "barista", "name_zh": "咖啡师", "name_en": "Barista", "group": "manufacturing", "category": "D", "score": 1},
+    {"id": "butcher", "name_zh": "屠宰师/肉类加工", "name_en": "Butcher", "group": "manufacturing", "category": "D", "score": 1},
+    # D 类 (1) — 建筑维修
+    {"id": "construction_worker", "name_zh": "建筑工人/木工", "name_en": "Construction Worker / Carpenter", "group": "manufacturing", "category": "D", "score": 1},
     {"id": "electrician", "name_zh": "电工", "name_en": "Electrician", "group": "manufacturing", "category": "D", "score": 1},
     {"id": "plumber", "name_zh": "水管工", "name_en": "Plumber", "group": "manufacturing", "category": "D", "score": 1},
-    {"id": "hvac_tech", "name_zh": "暖通技师", "name_en": "HVAC Technician", "group": "manufacturing", "category": "D", "score": 1},
     {"id": "auto_mechanic", "name_zh": "汽车维修技师", "name_en": "Auto Mechanic", "group": "manufacturing", "category": "D", "score": 1},
-    {"id": "equipment_tech", "name_zh": "设备维修技工", "name_en": "Equipment Technician", "group": "manufacturing", "category": "D", "score": 1},
+    {"id": "welder", "name_zh": "焊工", "name_en": "Welder", "group": "manufacturing", "category": "D", "score": 1},
+    # D 类 (1) — 其他
     {"id": "firefighter", "name_zh": "消防员", "name_en": "Firefighter", "group": "manufacturing", "category": "D", "score": 1},
     {"id": "pilot", "name_zh": "飞行员", "name_en": "Pilot", "group": "manufacturing", "category": "D", "score": 1},
-    {"id": "welder", "name_zh": "焊工", "name_en": "Welder", "group": "manufacturing", "category": "D", "score": 1},
     {"id": "farmer", "name_zh": "农民", "name_en": "Farmer", "group": "manufacturing", "category": "D", "score": 1},
+    {"id": "miner", "name_zh": "矿工", "name_en": "Miner", "group": "manufacturing", "category": "D", "score": 1},
+    {"id": "factory_technician", "name_zh": "工厂技术员", "name_en": "Factory Technician", "group": "manufacturing", "category": "D", "score": 1},
+    {"id": "cleaner", "name_zh": "清洁工/保洁员", "name_en": "Cleaner / Janitor", "group": "manufacturing", "category": "D", "score": 1},
 ]
 
 # Job ID -> job lookup
