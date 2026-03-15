@@ -54,27 +54,47 @@
                     </svg>
                 </div>
 
-                <!-- Job groups -->
-                <template x-for="group in jobGroups" :key="group.id">
-                    <div x-show="hasJobsInGroup(group.id)" class="mb-5 sm:mb-6">
-                        <h3 class="text-[10px] sm:text-xs font-medium text-muted uppercase tracking-wider mb-2 sm:mb-3">
-                            <span x-show="lang === 'zh'" x-text="group.name_zh"></span>
-                            <span x-show="lang === 'en'" x-cloak x-text="group.name_en"></span>
-                        </h3>
-                        <div class="flex flex-wrap gap-1.5 sm:gap-2">
-                            <template x-for="job in filteredJobs(group.id)" :key="job.id">
-                                <button
-                                    @click="selectJob(job)"
-                                    class="job-chip px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg border text-xs sm:text-sm font-medium cursor-pointer"
-                                    :class="selectedJob && selectedJob.id === job.id
-                                        ? 'selected'
-                                        : 'border-border bg-white text-ink2 hover:border-accent/40 active:scale-95'"
-                                    x-text="lang === 'zh' ? job.name_zh : job.name_en"
-                                ></button>
-                            </template>
+                <!-- Job groups (accordion) -->
+                <div class="space-y-2 sm:space-y-3">
+                    <template x-for="group in jobGroups" :key="group.id">
+                        <div x-show="hasJobsInGroup(group.id)"
+                             class="border border-border rounded-xl overflow-hidden bg-white">
+                            <!-- Group header (clickable) -->
+                            <button @click="toggleGroup(group.id)"
+                                    class="w-full flex items-center justify-between px-4 sm:px-5 py-3 sm:py-3.5 text-left hover:bg-warm/50 active:bg-warm transition-colors">
+                                <span class="text-sm sm:text-base font-medium text-ink">
+                                    <span x-show="lang === 'zh'" x-text="group.name_zh"></span>
+                                    <span x-show="lang === 'en'" x-cloak x-text="group.name_en"></span>
+                                </span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] sm:text-xs text-muted" x-text="filteredJobs(group.id).length"></span>
+                                    <svg class="w-4 h-4 text-muted transition-transform duration-200"
+                                         :class="openGroups.includes(group.id) ? 'rotate-180' : ''"
+                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <!-- Expanded job chips -->
+                            <div x-show="openGroups.includes(group.id) || searchQuery.trim()"
+                                 x-collapse
+                                 class="px-4 sm:px-5 pb-3 sm:pb-4">
+                                <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
+                                    <template x-for="job in filteredJobs(group.id)" :key="job.id">
+                                        <button
+                                            @click="selectJob(job)"
+                                            class="job-chip px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg border text-xs sm:text-sm font-medium cursor-pointer"
+                                            :class="selectedJob && selectedJob.id === job.id
+                                                ? 'selected'
+                                                : 'border-border bg-white text-ink2 hover:border-accent/40 active:scale-95'"
+                                            x-text="lang === 'zh' ? job.name_zh : job.name_en"
+                                        ></button>
+                                    </template>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </template>
+                    </template>
+                </div>
             </div>
 
             <!-- ═══ Q2-Q6: Multiple Choice ═══ -->

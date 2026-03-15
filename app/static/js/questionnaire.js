@@ -11,6 +11,7 @@ document.addEventListener('alpine:init', () => {
         selectedJob: null,
         searchQuery: '',
         transitioning: false,
+        openGroups: [],        // expanded accordion group IDs
 
         // Computed
         get totalSteps() { return 6; },
@@ -39,6 +40,16 @@ document.addEventListener('alpine:init', () => {
 
         hasJobsInGroup(groupId) {
             return this.filteredJobs(groupId).length > 0;
+        },
+
+        // Accordion toggle
+        toggleGroup(groupId) {
+            const idx = this.openGroups.indexOf(groupId);
+            if (idx >= 0) {
+                this.openGroups.splice(idx, 1);
+            } else {
+                this.openGroups.push(groupId);
+            }
         },
 
         // Actions
