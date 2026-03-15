@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
+<!-- html2canvas for screenshot -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
 <main class="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12 sm:py-16"
       x-data="{
           result: null,
           loaded: false,
-          copied: false,
+          generating: false,
+          showImageModal: false,
+          imageDataUrl: '',
           init() {
               const raw = sessionStorage.getItem('quizResult');
               if (!raw) { window.location.href = '/'; return; }
@@ -14,7 +19,6 @@
           },
           get gaugeOffset() {
               if (!this.result) return 283;
-              // Score is now 0-100
               const pct = this.result.total_score / 100;
               return 283 - (283 * pct);
           },
@@ -45,7 +49,6 @@
               return this.lang === 'zh' ? zh[idx] : en[idx];
           },
           riskTag(score) {
-              // Q1 scores are 1-7, Q2-Q6 scores are 1-4
               if (score >= 6) return this.lang === 'zh' ? '高危' : 'High Risk';
               if (score >= 4) return this.lang === 'zh' ? '中高风险' : 'Med-High';
               if (score === 3) return this.lang === 'zh' ? '中等' : 'Moderate';
@@ -59,13 +62,124 @@
               if (score === 2) return 'bg-teal-50 text-teal-600 border-teal-200';
               return 'bg-emerald-50 text-emerald-600 border-emerald-200';
           },
-          async copyResult() {
+          riskTagInline(score) {
+              if (score >= 6) return 'background:#FEF2F2;color:#DC2626;border:1px solid #FECACA';
+              if (score >= 4) return 'background:#FFF7ED;color:#E97316;border:1px solid #FED7AA';
+              if (score === 3) return 'background:#FFFBEB;color:#D97706;border:1px solid #FDE68A';
+              if (score === 2) return 'background:#E8F4F4;color:#2A6B6B;border:1px solid #A7D8D8';
+              return 'background:#ECFDF5;color:#059669;border:1px solid #A7F3D0';
+          },
+          async generateImage() {
+              this.generating = true;
+              try {
+                  await this.$nextTick();
+                  // Build the share card dynamically
+                  const card = this.buildShareCard();
+                  document.body.appendChild(card);
+
+                  const canvas = await html2canvas(card, {
+                      scale: 2,
+                      backgroundColor: '#FAFAF5',
+                      useCORS: true,
+                      logging: false,
+                  });
+                  document.body.removeChild(card);
+
+                  this.imageDataUrl = canvas.toDataURL('image/png');
+                  this.generating = false;
+
+                  // Try Web Share API first (best for mobile)
+                  const shared = await this.tryNativeShare();
+                  if (!shared) {
+                      // Fallback: show modal
+                      this.showImageModal = true;
+                  }
+              } catch (err) {
+                  console.error('Image generation failed:', err);
+                  this.generating = false;
+                  // Fallback to text copy
+                  this.copyText();
+              }
+          },
+          async tryNativeShare() {
+              try {
+                  const blob = await (await fetch(this.imageDataUrl)).blob();
+                  const file = new File([blob], 'ai-risk-result.png', { type: 'image/png' });
+                  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                      await navigator.share({
+                          files: [file],
+                          title: this.lang === 'zh' ? '我的AI替代风险测试结果' : 'My AI Replacement Risk',
+                      });
+                      return true;
+                  }
+              } catch (err) {
+                  if (err.name !== 'AbortError') console.log('Share API unavailable:', err);
+              }
+              return false;
+          },
+          downloadImage() {
+              const link = document.createElement('a');
+              link.href = this.imageDataUrl;
+              link.download = 'ai-risk-result.png';
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+          },
+          async copyText() {
               const text = this.lang === 'zh'
-                  ? `我的AI替代风险测试结果：${this.result.total_score}分（${this.result.risk_label_zh}）\n职业：${this.result.job_name_zh}\n来测测你的吧！`
-                  : `My AI Replacement Risk Score: ${this.result.total_score} (${this.result.risk_label_en})\nJob: ${this.result.job_name_en}\nTake the quiz!`;
+                  ? `我的AI替代风险测试结果：${this.result.total_score}分（${this.result.risk_label_zh}）\n职业：${this.result.job_name_zh}`
+                  : `My AI Risk Score: ${this.result.total_score} (${this.result.risk_label_en})\nJob: ${this.result.job_name_en}`;
               await navigator.clipboard.writeText(text);
-              this.copied = true;
-              setTimeout(() => this.copied = false, 2000);
+          },
+          buildShareCard() {
+              const isZh = this.lang === 'zh';
+              const r = this.result;
+              const color = this.gaugeColor;
+              const isOverride = r.risk_level === 'override';
+
+              // Build dimension rows
+              let dimensionHtml = '';
+              if (!isOverride) {
+                  const labels = isZh
+                      ? ['职业类型', '产出形式', '知识类型', '委托能力', '容错率', '职级定位']
+                      : ['Job Type', 'Output', 'Knowledge', 'Delegation', 'Tolerance', 'Level'];
+                  r.breakdown.forEach((score, idx) => {
+                      const tag = this.riskTag(score);
+                      const tagStyle = this.riskTagInline(score);
+                      dimensionHtml += `<div style='display:flex;align-items:center;justify-content:space-between;padding:6px 0'>
+                          <span style='font-size:12px;color:#6B6B6B'>${labels[idx]}</span>
+                          <span style='font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;${tagStyle}'>${tag}</span>
+                      </div>`;
+                  });
+              }
+
+              const card = document.createElement('div');
+              card.style.cssText = 'position:fixed;left:-9999px;top:0;width:375px;padding:40px 28px;background:#FAFAF5;font-family:"Noto Sans SC","Inter",system-ui,sans-serif';
+              card.innerHTML = `
+                  <div style="text-align:center;margin-bottom:24px">
+                      ${isOverride
+                          ? `<div style="width:64px;height:64px;border-radius:50%;background:#F5F0EB;display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px">
+                              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6B6B6B" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            </div>`
+                          : `<div style="font-size:48px;font-weight:700;color:${color};font-family:'Noto Serif SC',Georgia,serif">${r.total_score}</div>
+                            <div style="font-size:13px;color:#6B6B6B;margin-top:2px">/ 100</div>`
+                      }
+                      <div style="font-size:13px;color:#6B6B6B;margin-top:12px">${isZh ? r.job_name_zh : r.job_name_en}</div>
+                      <div style="font-size:20px;font-weight:700;color:${isOverride ? '#6B6B6B' : color};margin-top:8px;font-family:'Noto Serif SC',Georgia,serif;line-height:1.4">${isZh ? r.risk_label_zh : r.risk_label_en}</div>
+                  </div>
+                  <div style="background:white;border:1px solid #E5E0DA;border-radius:16px;padding:20px;margin-bottom:16px">
+                      <div style="font-size:15px;font-weight:700;margin-bottom:8px;font-family:'Noto Serif SC',Georgia,serif">${isZh ? '分析与建议' : 'Analysis & Advice'}</div>
+                      <div style="font-size:13px;color:#3D3D3D;line-height:1.7;white-space:pre-line">${isZh ? r.advice_zh : r.advice_en}</div>
+                  </div>
+                  ${!isOverride ? `<div style="background:white;border:1px solid #E5E0DA;border-radius:16px;padding:20px;margin-bottom:16px">
+                      <div style="font-size:15px;font-weight:700;margin-bottom:12px;font-family:'Noto Serif SC',Georgia,serif">${isZh ? '维度拆解' : 'Breakdown'}</div>
+                      ${dimensionHtml}
+                  </div>` : ''}
+                  <div style="text-align:center;font-size:11px;color:#A8A39D;margin-top:20px">
+                      ${isZh ? '我的工作会被AI替代吗？— 测一测' : 'Will AI Replace My Job? — Take the quiz'}
+                  </div>
+              `;
+              return card;
           },
       }">
 
@@ -141,12 +255,16 @@
 
         <!-- Actions -->
         <div class="flex flex-col sm:flex-row gap-3 fade-in fade-in-delay-4">
-            <button @click="copyResult()"
-                    class="flex-1 px-6 py-3 sm:py-3.5 rounded-full border border-border bg-white text-ink text-sm sm:text-base font-medium hover:border-ink/30 active:scale-95 transition-all text-center">
-                <span x-show="!copied && lang === 'zh'">复制分享结果</span>
-                <span x-show="!copied && lang === 'en'" x-cloak>Copy & Share</span>
-                <span x-show="copied && lang === 'zh'">已复制!</span>
-                <span x-show="copied && lang === 'en'" x-cloak>Copied!</span>
+            <button @click="generateImage()"
+                    :disabled="generating"
+                    class="flex-1 px-6 py-3 sm:py-3.5 rounded-full border border-border bg-white text-ink text-sm sm:text-base font-medium hover:border-ink/30 active:scale-95 transition-all text-center disabled:opacity-50">
+                <span x-show="!generating && lang === 'zh'">保存分享图片</span>
+                <span x-show="!generating && lang === 'en'" x-cloak>Save Share Image</span>
+                <span x-show="generating" class="flex items-center justify-center gap-2">
+                    <span class="inline-block w-4 h-4 border-2 border-ink/30 border-t-ink rounded-full animate-spin"></span>
+                    <span x-show="lang === 'zh'">生成中...</span>
+                    <span x-show="lang === 'en'" x-cloak>Generating...</span>
+                </span>
             </button>
             <a href="/questionnaire"
                class="flex-1 px-6 py-3 sm:py-3.5 rounded-full bg-ink text-cream text-sm sm:text-base font-medium hover:bg-ink2 active:scale-95 transition-all text-center">
@@ -160,6 +278,34 @@
             <span x-show="lang === 'zh'">本测试仅供参考，不构成职业建议</span>
             <span x-show="lang === 'en'" x-cloak>This quiz is for reference only and does not constitute career advice</span>
         </p>
+    </div>
+
+    <!-- Image preview modal (fallback for platforms without Web Share API) -->
+    <div x-show="showImageModal" x-cloak
+         class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-ink/80 backdrop-blur-sm px-4 py-8"
+         @click.self="showImageModal = false">
+        <div class="flex-1 flex items-center justify-center w-full max-w-sm overflow-auto">
+            <img :src="imageDataUrl" class="w-full rounded-xl shadow-2xl" alt="Result">
+        </div>
+        <div class="flex-shrink-0 mt-4 w-full max-w-sm space-y-3">
+            <!-- iOS hint -->
+            <p class="text-center text-xs text-white/60">
+                <span x-show="lang === 'zh'">长按图片可保存到相册 / 点击下方按钮下载</span>
+                <span x-show="lang === 'en'" x-cloak>Long-press image to save to Photos / tap button to download</span>
+            </p>
+            <div class="flex gap-3">
+                <button @click="downloadImage()"
+                        class="flex-1 px-5 py-3 rounded-full bg-white text-ink text-sm font-medium active:scale-95 transition-all text-center">
+                    <span x-show="lang === 'zh'">下载图片</span>
+                    <span x-show="lang === 'en'" x-cloak>Download</span>
+                </button>
+                <button @click="showImageModal = false"
+                        class="flex-1 px-5 py-3 rounded-full bg-white/20 text-white text-sm font-medium active:scale-95 transition-all text-center">
+                    <span x-show="lang === 'zh'">关闭</span>
+                    <span x-show="lang === 'en'" x-cloak>Close</span>
+                </button>
+            </div>
+        </div>
     </div>
 </main>
 {% endblock %}
