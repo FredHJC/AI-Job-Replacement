@@ -29,7 +29,7 @@ def test_score_api_valid():
     })
     assert r.status_code == 200
     data = r.json()
-    assert data["total_score"] == 24
+    assert data["total_score"] == 95
     assert data["risk_level"] == "extreme"
 
 

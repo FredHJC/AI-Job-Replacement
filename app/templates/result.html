@@ -14,15 +14,17 @@
           },
           get gaugeOffset() {
               if (!this.result) return 283;
-              const pct = (this.result.total_score - 6) / 18;
+              // Score is now 0-100
+              const pct = this.result.total_score / 100;
               return 283 - (283 * pct);
           },
           get gaugeColor() {
               if (!this.result) return '#6B6B6B';
               const s = this.result.total_score;
-              if (s >= 20) return '#DC2626';
-              if (s >= 14) return '#F59E0B';
-              if (s >= 8) return '#2A6B6B';
+              if (s >= 86) return '#DC2626';
+              if (s >= 67) return '#E97316';
+              if (s >= 38) return '#F59E0B';
+              if (s >= 15) return '#2A6B6B';
               return '#059669';
           },
           get riskLabel() {
@@ -43,13 +45,16 @@
               return this.lang === 'zh' ? zh[idx] : en[idx];
           },
           riskTag(score) {
-              if (score === 4) return this.lang === 'zh' ? '高危' : 'High Risk';
-              if (score === 3) return this.lang === 'zh' ? '中高风险' : 'Med-High';
-              if (score === 2) return this.lang === 'zh' ? '较低风险' : 'Low Risk';
+              // Q1 scores are 1-7, Q2-Q6 scores are 1-4
+              if (score >= 6) return this.lang === 'zh' ? '高危' : 'High Risk';
+              if (score >= 4) return this.lang === 'zh' ? '中高风险' : 'Med-High';
+              if (score === 3) return this.lang === 'zh' ? '中等' : 'Moderate';
+              if (score === 2) return this.lang === 'zh' ? '较低' : 'Low';
               return this.lang === 'zh' ? '安全' : 'Safe';
           },
           riskTagColor(score) {
-              if (score === 4) return 'bg-red-50 text-red-600 border-red-200';
+              if (score >= 6) return 'bg-red-50 text-red-600 border-red-200';
+              if (score >= 4) return 'bg-orange-50 text-orange-600 border-orange-200';
               if (score === 3) return 'bg-amber-50 text-amber-600 border-amber-200';
               if (score === 2) return 'bg-teal-50 text-teal-600 border-teal-200';
               return 'bg-emerald-50 text-emerald-600 border-emerald-200';
@@ -95,7 +100,7 @@
                     </svg>
                     <div class="absolute inset-0 flex flex-col items-center justify-center">
                         <span class="text-4xl sm:text-5xl font-serif font-bold score-reveal" x-text="result.total_score"></span>
-                        <span class="text-xs sm:text-sm text-muted mt-1" x-text="'/ 24'"></span>
+                        <span class="text-xs sm:text-sm text-muted mt-1" x-text="'/ 100'"></span>
                     </div>
                 </div>
                 <p class="text-xs sm:text-sm text-muted mb-2" x-text="jobName"></p>
