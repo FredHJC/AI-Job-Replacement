@@ -3,9 +3,13 @@
 {% block content %}
 <!-- html2canvas for screenshot -->
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+    window.__EXPLANATIONS__ = {{ explanations | tojson }};
+</script>
 
 <main class="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12 sm:py-16"
       x-data="{
+          expandedDim: null,  // currently expanded dimension index (null = none)
           result: null,
           loaded: false,
           generating: false,
@@ -68,6 +72,26 @@
               if (score === 3) return 'background:#FFFBEB;color:#D97706;border:1px solid #FDE68A';
               if (score === 2) return 'background:#E8F4F4;color:#2A6B6B;border:1px solid #A7D8D8';
               return 'background:#ECFDF5;color:#059669;border:1px solid #A7F3D0';
+          },
+          getExplanation(dimIdx, score) {
+              const dim = window.__EXPLANATIONS__[String(dimIdx)];
+              if (!dim) return null;
+              let tier;
+              if (dimIdx === 0) {
+                  // Q1 uses 1-7 scale
+                  tier = score >= 5 ? 'high' : score >= 3 ? 'medium' : 'low';
+              } else {
+                  // Q2-Q6 uses 1-4 scale
+                  tier = score >= 4 ? 'high' : score >= 2 ? 'medium' : 'low';
+              }
+              const tierData = dim.tiers[tier];
+              return {
+                  title: this.lang === 'zh' ? dim.title_zh : dim.title_en,
+                  text: this.lang === 'zh' ? tierData.zh : tierData.en,
+              };
+          },
+          toggleDim(idx) {
+              this.expandedDim = this.expandedDim === idx ? null : idx;
           },
           async generateImage() {
               this.generating = true;
@@ -240,14 +264,40 @@
                 <span x-show="lang === 'zh'">维度拆解</span>
                 <span x-show="lang === 'en'" x-cloak>Dimension Breakdown</span>
             </h3>
-            <div class="space-y-2.5 sm:space-y-3">
+            <p class="text-[10px] sm:text-xs text-muted/50 mb-4 -mt-2">
+                <span x-show="lang === 'zh'">点击标签查看研究解读</span>
+                <span x-show="lang === 'en'" x-cloak>Tap a tag for research-based explanation</span>
+            </p>
+            <div class="space-y-1">
                 <template x-for="(score, idx) in result.breakdown" :key="idx">
-                    <div class="flex items-center justify-between py-1.5">
-                        <span class="text-xs sm:text-sm text-muted" x-text="questionLabels(idx)"></span>
-                        <span class="text-[11px] sm:text-xs font-medium px-2.5 py-1 rounded-full border"
-                              :class="riskTagColor(score)"
-                              x-text="riskTag(score)">
-                        </span>
+                    <div>
+                        <!-- Tag row -->
+                        <button @click="toggleDim(idx)"
+                                class="w-full flex items-center justify-between py-2.5 px-1 rounded-lg hover:bg-warm/50 active:bg-warm transition-colors cursor-pointer">
+                            <span class="text-xs sm:text-sm text-muted" x-text="questionLabels(idx)"></span>
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-[11px] sm:text-xs font-medium px-2.5 py-1 rounded-full border"
+                                      :class="riskTagColor(score)"
+                                      x-text="riskTag(score)">
+                                </span>
+                                <svg class="w-3.5 h-3.5 text-muted/40 transition-transform duration-200"
+                                     :class="expandedDim === idx ? 'rotate-180' : ''"
+                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </button>
+                        <!-- Expanded explanation card -->
+                        <div x-show="expandedDim === idx" x-collapse
+                             class="mx-1 mb-2">
+                            <div class="bg-warm/60 rounded-xl p-4 sm:p-5 border border-border/50">
+                                <p class="text-xs sm:text-sm text-ink2 leading-relaxed" x-text="getExplanation(idx, score)?.text"></p>
+                                <p class="text-[10px] text-muted/40 mt-3 italic">
+                                    <span x-show="lang === 'zh'">— 基于 Anthropic、Stanford、HBS/BCG 研究</span>
+                                    <span x-show="lang === 'en'" x-cloak>— Based on Anthropic, Stanford, HBS/BCG research</span>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </template>
             </div>

@@ -6,6 +6,7 @@ from fastapi.responses import HTMLResponse
 from app.config import TEMPLATES_DIR, STATIC_DIR
 from app.data.jobs import JOBS, JOB_GROUPS, OVERRIDE_JOBS, CONSISTENCY_WARNINGS
 from app.data.questions import QUESTIONS
+from app.data.explanations import DIMENSION_EXPLANATIONS
 from app.scoring import compute_result
 from app.models import QuizAnswers
 
@@ -43,4 +44,8 @@ async def score(answers: QuizAnswers):
 
 @app.get("/result", response_class=HTMLResponse)
 async def result(request: Request):
-    return templates.TemplateResponse(request, "result.html")
+    return templates.TemplateResponse(
+        request,
+        "result.html",
+        {"explanations": DIMENSION_EXPLANATIONS},
+    )
