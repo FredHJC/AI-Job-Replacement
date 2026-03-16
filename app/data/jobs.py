@@ -225,6 +225,33 @@ JOBS = [
     {"id": "ceo", "name_zh": "CEO / 总经理", "name_en": "CEO / General Manager", "group": "admin", "category": "C", "score": 2},
 
     # ══════════════════════════════════════════
+    #  工程 / 硬件
+    # ══════════════════════════════════════════
+    # Tier 7 (7分) — 纯重复性工作
+    {"id": "hardware_tester", "name_zh": "硬件测试工程师", "name_en": "Hardware Test Engineer", "group": "engineering", "category": "A", "score": 6},
+    # Tier 5 (5分) — 结构化+经验
+    {"id": "electronics_engineer", "name_zh": "电子工程师", "name_en": "Electronics Engineer", "group": "engineering", "category": "B", "score": 4},
+    {"id": "electrical_engineer", "name_zh": "电气工程师", "name_en": "Electrical Engineer", "group": "engineering", "category": "B", "score": 4},
+    {"id": "ic_design_engineer", "name_zh": "芯片设计工程师", "name_en": "IC Design Engineer", "group": "engineering", "category": "B", "score": 4},
+    {"id": "ic_verification_engineer", "name_zh": "芯片验证工程师", "name_en": "IC Verification Engineer", "group": "engineering", "category": "B", "score": 5},
+    {"id": "fpga_engineer", "name_zh": "FPGA 工程师", "name_en": "FPGA Engineer", "group": "engineering", "category": "B", "score": 4},
+    {"id": "pcb_engineer", "name_zh": "PCB 设计工程师", "name_en": "PCB Layout Engineer", "group": "engineering", "category": "B", "score": 5},
+    {"id": "rf_engineer", "name_zh": "射频工程师", "name_en": "RF Engineer", "group": "engineering", "category": "B", "score": 3},
+    {"id": "telecom_engineer", "name_zh": "通信工程师", "name_en": "Telecommunications Engineer", "group": "engineering", "category": "B", "score": 5},
+    {"id": "power_engineer", "name_zh": "电力系统工程师", "name_en": "Power Systems Engineer", "group": "engineering", "category": "B", "score": 4},
+    {"id": "automation_engineer", "name_zh": "自动化工程师", "name_en": "Automation / Control Engineer", "group": "engineering", "category": "B", "score": 4},
+    {"id": "mechanical_engineer", "name_zh": "机械工程师", "name_en": "Mechanical Engineer", "group": "engineering", "category": "B", "score": 4},
+    {"id": "optical_engineer", "name_zh": "光学工程师", "name_en": "Optical Engineer", "group": "engineering", "category": "B", "score": 4},
+    {"id": "materials_engineer", "name_zh": "材料工程师", "name_en": "Materials Engineer", "group": "engineering", "category": "B", "score": 4},
+    {"id": "instrumentation_engineer", "name_zh": "仪器仪表工程师", "name_en": "Instrumentation Engineer", "group": "engineering", "category": "B", "score": 5},
+    # Tier 3 (3分) — 人际/策略主导
+    {"id": "semiconductor_process_engineer", "name_zh": "半导体工艺工程师", "name_en": "Semiconductor Process Engineer", "group": "engineering", "category": "C", "score": 3},
+    {"id": "chip_architect", "name_zh": "芯片架构师", "name_en": "Chip Architect", "group": "engineering", "category": "C", "score": 3},
+    {"id": "hardware_director", "name_zh": "硬件技术总监", "name_en": "Hardware Engineering Director", "group": "engineering", "category": "C", "score": 2},
+    # Tier 1 (1分) — 物理/生命安全
+    {"id": "field_service_engineer", "name_zh": "现场调试工程师", "name_en": "Field Service Engineer", "group": "engineering", "category": "D", "score": 1},
+
+    # ══════════════════════════════════════════
     #  制造 / 体力劳动
     # ══════════════════════════════════════════
     # Tier 7 (7分) — 纯重复性工作
@@ -330,6 +357,11 @@ CONSISTENCY_WARNINGS = {
         (4, "A", "您选择的是医疗类岗位，但交付物选择了标准化信息产出。如果您的工作确实以文档为主（如病历管理），可以忽略此提示。",
          "You selected a medical role but chose standardized digital output. If your work is indeed document-focused (e.g., medical records), you can ignore this."),
     ],
+    # Engineering/hardware jobs selecting "standardized digital output"
+    "engineering": [
+        (4, "A", "您选择的是工程/硬件类岗位，但交付物选择了标准化信息产出。如果您的工作确实以文档或仿真数据为主，可以忽略此提示。",
+         "You selected an engineering/hardware role but chose standardized digital output. If your work is indeed document or simulation-focused, you can ignore this."),
+    ],
 }
 
 # Groups for UI display (order matters)
@@ -343,5 +375,6 @@ JOB_GROUPS = [
     {"id": "creative", "name_zh": "创意 / 媒体", "name_en": "Creative / Media"},
     {"id": "service", "name_zh": "服务 / 销售", "name_en": "Service / Sales"},
     {"id": "admin", "name_zh": "管理 / 行政", "name_en": "Management / Admin"},
+    {"id": "engineering", "name_zh": "工程 / 硬件", "name_en": "Engineering / Hardware"},
     {"id": "manufacturing", "name_zh": "制造 / 体力劳动", "name_en": "Manufacturing / Physical Labor"},
 ]
