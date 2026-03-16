@@ -49,9 +49,9 @@ def test_low_risk():
 
 
 def test_moderate_risk():
-    # product_manager(4) + 5*B(3) = 19 → raw_to_100(19) = 62
+    # product_manager(3) + 5*B(3) = 18 → raw_to_100(18) = 57
     result = compute_result(make_answers(job_id="product_manager", q2="B", q3="B", q4="B", q5="B", q6="B"))
-    assert result.total_score == 62
+    assert result.total_score == 57
     assert result.risk_level == "moderate"
 
 
