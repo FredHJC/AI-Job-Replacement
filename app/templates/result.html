@@ -80,7 +80,7 @@
                                 class="w-full flex items-center justify-between py-2.5 px-1 rounded-lg hover:bg-warm/50 active:bg-warm transition-colors cursor-pointer">
                             <span class="text-xs sm:text-sm text-muted" x-text="questionLabels(idx)"></span>
                             <div class="flex items-center gap-1.5">
-                                <span class="text-[11px] sm:text-xs font-medium px-2.5 py-1 rounded-full border"
+                                <span class="text-[11px] sm:text-xs font-medium px-2.5 py-1 rounded-full border inline-flex items-center leading-tight"
                                       :class="riskTagColor(score)"
                                       x-text="riskTag(score)">
                                 </span>
@@ -136,29 +136,31 @@
 
     <!-- Image preview modal (fallback for platforms without Web Share API) -->
     <div x-show="showImageModal" x-cloak
-         class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-ink/80 backdrop-blur-sm px-4 py-8"
-         @click.self="showImageModal = false">
-        <div class="flex-1 flex items-center justify-center w-full max-w-sm overflow-auto">
-            <img :src="imageDataUrl" class="w-full rounded-xl shadow-2xl" alt="Result">
+         class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-ink/90 backdrop-blur-sm">
+        <!-- Close button -->
+        <button @click="showImageModal = false"
+                class="absolute top-5 right-5 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white/20 text-white active:bg-white/30 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+        <!-- Image — blob URL for iOS long-press "Add to Photos" support -->
+        <div class="flex-1 flex items-center justify-center w-full px-6 py-12">
+            <img :src="imageBlobUrl"
+                 class="max-w-full max-h-full rounded-xl shadow-2xl"
+                 style="-webkit-touch-callout: default; -webkit-user-select: auto; user-select: auto"
+                 alt="AI Risk Result">
         </div>
-        <div class="flex-shrink-0 mt-4 w-full max-w-sm space-y-3">
-            <!-- iOS hint -->
-            <p class="text-center text-xs text-white/60">
-                <span x-show="lang === 'zh'">长按图片可保存到相册 / 点击下方按钮下载</span>
-                <span x-show="lang === 'en'" x-cloak>Long-press image to save to Photos / tap button to download</span>
+        <!-- Hint -->
+        <div class="flex-shrink-0 pb-8 px-4 text-center">
+            <p class="text-sm text-white/80 mb-1">
+                <span x-show="lang === 'zh'">长按上方图片 → 添加到照片</span>
+                <span x-show="lang === 'en'" x-cloak>Long-press the image → Add to Photos</span>
             </p>
-            <div class="flex gap-3">
-                <button @click="downloadImage()"
-                        class="flex-1 px-5 py-3 rounded-full bg-white text-ink text-sm font-medium active:scale-95 transition-all text-center">
-                    <span x-show="lang === 'zh'">下载图片</span>
-                    <span x-show="lang === 'en'" x-cloak>Download</span>
-                </button>
-                <button @click="showImageModal = false"
-                        class="flex-1 px-5 py-3 rounded-full bg-white/20 text-white text-sm font-medium active:scale-95 transition-all text-center">
-                    <span x-show="lang === 'zh'">关闭</span>
-                    <span x-show="lang === 'en'" x-cloak>Close</span>
-                </button>
-            </div>
+            <p class="text-xs text-white/40">
+                <span x-show="lang === 'zh'">或直接截屏保存</span>
+                <span x-show="lang === 'en'" x-cloak>Or take a screenshot to save</span>
+            </p>
         </div>
     </div>
 </main>
