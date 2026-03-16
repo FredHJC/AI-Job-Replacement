@@ -132,8 +132,8 @@
                                               : 'bg-warm text-muted'"
                                           x-text="opt.label">
                                     </span>
-                                    <span class="text-sm sm:text-base leading-relaxed" x-show="lang === 'zh'" x-text="opt.text_zh"></span>
-                                    <span class="text-sm sm:text-base leading-relaxed" x-show="lang === 'en'" x-cloak x-text="opt.text_en"></span>
+                                    <span class="text-sm sm:text-base leading-relaxed" x-show="lang === 'zh'" x-html="opt.text_zh"></span>
+                                    <span class="text-sm sm:text-base leading-relaxed" x-show="lang === 'en'" x-cloak x-html="opt.text_en"></span>
                                 </div>
                             </button>
                         </template>
