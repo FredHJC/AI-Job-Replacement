@@ -15,6 +15,9 @@ app = FastAPI(title="Will AI Replace My Job?")
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 templates = Jinja2Templates(directory=TEMPLATES_DIR)
 
+# Make tojson output raw UTF-8 instead of \uXXXX escapes
+templates.env.policies["json.dumps_kwargs"] = {"ensure_ascii": False}
+
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
