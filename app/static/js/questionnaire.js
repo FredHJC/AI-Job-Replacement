@@ -126,10 +126,10 @@ document.addEventListener('alpine:init', () => {
             if (this.transitioning) return;
             if (this.currentStep < 5) {
                 this.transitioning = true;
+                this.currentStep++;
                 setTimeout(() => {
-                    this.currentStep++;
                     this.transitioning = false;
-                }, 50);
+                }, 500);
             } else {
                 this.submit();
             }
@@ -138,10 +138,10 @@ document.addEventListener('alpine:init', () => {
         goBack() {
             if (this.transitioning || this.currentStep === 0) return;
             this.transitioning = true;
+            this.currentStep--;
             setTimeout(() => {
-                this.currentStep--;
                 this.transitioning = false;
-            }, 50);
+            }, 500);
         },
 
         async submitOverride() {
