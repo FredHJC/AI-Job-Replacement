@@ -1,3 +1,5 @@
+import time
+
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -18,6 +20,10 @@ templates = Jinja2Templates(directory=TEMPLATES_DIR)
 
 # Make tojson output raw UTF-8 instead of \uXXXX escapes
 templates.env.policies["json.dumps_kwargs"] = {"ensure_ascii": False}
+
+# Cache-busting version (changes on each deploy/restart)
+_ASSET_VERSION = str(int(time.time()))
+templates.env.globals["v"] = _ASSET_VERSION
 
 init_db()
 

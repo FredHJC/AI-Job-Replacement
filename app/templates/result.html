@@ -5,7 +5,7 @@
     window.__EXPLANATIONS__ = {{ explanations | tojson }};
     window.__SERVER_RESULT__ = {{ server_result | tojson }};
 </script>
-<script src="/static/js/result.js"></script>
+<script src="/static/js/result.js?v={{ v }}"></script>
 
 <main class="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12 sm:py-16"
       x-data="resultPage">
