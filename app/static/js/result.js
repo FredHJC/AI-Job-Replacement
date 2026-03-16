@@ -8,9 +8,14 @@ document.addEventListener('alpine:init', () => {
         imageDataUrl: '',
         imageBlobUrl: '',
         init() {
-            const raw = sessionStorage.getItem('quizResult');
-            if (!raw) { window.location.href = '/'; return; }
-            this.result = JSON.parse(raw);
+            // Prefer server-rendered data (permalink), fall back to sessionStorage
+            if (window.__SERVER_RESULT__) {
+                this.result = window.__SERVER_RESULT__;
+            } else {
+                const raw = sessionStorage.getItem('quizResult');
+                if (!raw) { window.location.href = '/'; return; }
+                this.result = JSON.parse(raw);
+            }
             setTimeout(() => this.loaded = true, 100);
         },
         get gaugeOffset() {

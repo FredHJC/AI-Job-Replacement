@@ -158,8 +158,12 @@ document.addEventListener('alpine:init', () => {
                     body: JSON.stringify(payload),
                 });
                 const data = await resp.json();
-                sessionStorage.setItem('quizResult', JSON.stringify(data));
-                window.location.href = '/result';
+                if (data.result_id) {
+                    window.location.href = '/result/' + data.result_id;
+                } else {
+                    sessionStorage.setItem('quizResult', JSON.stringify(data));
+                    window.location.href = '/result';
+                }
             } catch (err) {
                 console.error('Submit error:', err);
                 this.currentStep = 0;
@@ -184,8 +188,12 @@ document.addEventListener('alpine:init', () => {
                     body: JSON.stringify(payload),
                 });
                 const data = await resp.json();
-                sessionStorage.setItem('quizResult', JSON.stringify(data));
-                window.location.href = '/result';
+                if (data.result_id) {
+                    window.location.href = '/result/' + data.result_id;
+                } else {
+                    sessionStorage.setItem('quizResult', JSON.stringify(data));
+                    window.location.href = '/result';
+                }
             } catch (err) {
                 console.error('Submit error:', err);
                 this.currentStep = 5;
