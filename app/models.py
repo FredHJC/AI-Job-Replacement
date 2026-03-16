@@ -8,6 +8,8 @@ class QuizAnswers(BaseModel):
     q4: str = Field(..., pattern="^[ABCD]$")
     q5: str = Field(..., pattern="^[ABCD]$")
     q6: str = Field(..., pattern="^[ABCD]$")
+    q7: str = Field(..., pattern="^[ABCD]$")
+    q8: str = Field(..., pattern="^[ABCD]$")
 
 
 class ScoreResult(BaseModel):

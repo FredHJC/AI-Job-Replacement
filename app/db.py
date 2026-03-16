@@ -23,16 +23,23 @@ def _get_conn() -> sqlite3.Connection:
 
 def init_db():
     conn = _get_conn()
-    conn.execute("""
-        CREATE TABLE IF NOT EXISTS submissions (
-            id          TEXT PRIMARY KEY,
-            job_id      TEXT NOT NULL,
-            answers     TEXT NOT NULL,
-            result      TEXT NOT NULL,
-            created_at  REAL NOT NULL
-        )
-    """)
-    conn.commit()
+    conn.execute("CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT)")
+    row = conn.execute("SELECT value FROM meta WHERE key = 'schema_version'").fetchone()
+    current = row["value"] if row else "0"
+
+    if current != "2":
+        conn.execute("DROP TABLE IF EXISTS submissions")
+        conn.execute("""
+            CREATE TABLE submissions (
+                id          TEXT PRIMARY KEY,
+                job_id      TEXT NOT NULL,
+                answers     TEXT NOT NULL,
+                result      TEXT NOT NULL,
+                created_at  REAL NOT NULL
+            )
+        """)
+        conn.execute("INSERT OR REPLACE INTO meta (key, value) VALUES ('schema_version', '2')")
+        conn.commit()
     conn.close()
 
 

@@ -4,13 +4,13 @@ from app.models import QuizAnswers, ScoreResult
 
 OPTION_SCORES = {"A": 4, "B": 3, "C": 2, "D": 1}
 
-# Raw score range: 6 (min: 1+5*1) to 27 (max: 7+5*4)
-RAW_MIN = 6
-RAW_MAX = 27
+# Raw score range: 8 (min: 1+7*1) to 35 (max: 7+7*4)
+RAW_MIN = 8
+RAW_MAX = 35
 
 
 def raw_to_100(raw: int) -> int:
-    """Map raw score (6-27) to 0-100 scale, integer, where higher = more risk."""
+    """Map raw score (8-35) to 0-100 scale, integer, where higher = more risk."""
     return round((raw - RAW_MIN) / (RAW_MAX - RAW_MIN) * 100)
 
 
@@ -128,7 +128,7 @@ def compute_result(answers: QuizAnswers) -> ScoreResult:
     if override:
         return ScoreResult(
             total_score=0,
-            breakdown=[job["score"], 0, 0, 0, 0, 0],
+            breakdown=[job["score"], 0, 0, 0, 0, 0, 0, 0],
             risk_level="override",
             risk_label_zh=override["label_zh"],
             risk_label_en=override["label_en"],
@@ -140,7 +140,7 @@ def compute_result(answers: QuizAnswers) -> ScoreResult:
 
     q1_score = job["score"]
 
-    question_answers = [answers.q2, answers.q3, answers.q4, answers.q5, answers.q6]
+    question_answers = [answers.q2, answers.q3, answers.q4, answers.q5, answers.q6, answers.q7, answers.q8]
     q_scores = [OPTION_SCORES[a] for a in question_answers]
 
     breakdown = [q1_score] + q_scores

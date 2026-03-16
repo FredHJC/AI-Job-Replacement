@@ -55,7 +55,7 @@ async def score(answers: QuizAnswers):
 
     sid = save_submission(
         job_id=answers.job_id,
-        answers={"q2": answers.q2, "q3": answers.q3, "q4": answers.q4, "q5": answers.q5, "q6": answers.q6},
+        answers={"q2": answers.q2, "q3": answers.q3, "q4": answers.q4, "q5": answers.q5, "q6": answers.q6, "q7": answers.q7, "q8": answers.q8},
         result=result_dict,
     )
 

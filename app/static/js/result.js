@@ -48,8 +48,8 @@ document.addEventListener('alpine:init', () => {
             return this.lang === 'zh' ? this.result.job_name_zh : this.result.job_name_en;
         },
         questionLabels(idx) {
-            const zh = ['职业类型', '产出形式', '知识类型', '委托能力', '容错率', '职级定位'];
-            const en = ['Job Type', 'Output Form', 'Knowledge Type', 'Delegation', 'Error Tolerance', 'Career Level'];
+            const zh = ['职业类型', '数字化暴露', '人际复杂度', '产出形式', '知识类型', '委托能力', '容错率', '职级定位'];
+            const en = ['Job Type', 'Digital Exposure', 'Interaction', 'Output Form', 'Knowledge Type', 'Delegation', 'Error Tolerance', 'Career Level'];
             return this.lang === 'zh' ? zh[idx] : en[idx];
         },
         riskTag(score) {

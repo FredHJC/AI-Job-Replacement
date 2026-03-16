@@ -1,13 +1,13 @@
 # Dimension explanation cards — shown when user clicks a risk tag in the result breakdown.
-# Each dimension (Q1-Q6) has explanations for each risk tier, grounded in research.
+# Each dimension (Q1-Q8) has explanations for each risk tier, grounded in research.
 #
 # Research basis:
 # [A] Anthropic "Observed Exposure" (2026) — actual API usage patterns
 # [S] Stanford "Canary in the Coal Mine" (Brynjolfsson et al., 2025) — codified vs tacit knowledge
 # [H] HBS & BCG "Jagged Technological Frontier" (2023) — inside vs outside the frontier
 
-# Keys: dimension index (0-5) → score range → explanation
-# Q1 scores are 1-7, Q2-Q6 scores are 1-4
+# Keys: dimension index (0-7) → score range → explanation
+# Q1 scores are 1-7, Q2-Q8 scores are 1-4
 
 DIMENSION_EXPLANATIONS = {
     # ── Q1: 职业类型 ──
@@ -54,8 +54,96 @@ DIMENSION_EXPLANATIONS = {
         },
     },
 
-    # ── Q2: 产出形式 ──
+    # ── Q2: 数字化暴露 ──
     1: {
+        "title_zh": "数字化暴露",
+        "title_en": "Digital Exposure",
+        "tiers": {
+            "high": {
+                "zh": (
+                    "您几乎全天在电脑前工作。Anthropic 的研究表明，高度数字化的工作流程是 AI 渗透的首要条件——"
+                    "当您的全部输入和输出都在数字系统中流转时，AI 可以无缝接入每一个环节。"
+                    "斯坦福的研究发现，数字化程度最高的职业（软件开发、数据分析）正是 AI 替代效应最强的领域。"
+                ),
+                "en": (
+                    "You spend nearly all day at a computer. Anthropic's research shows high digital workflow is the primary condition for AI penetration — "
+                    "when all your inputs and outputs flow through digital systems, AI can seamlessly plug into every step. "
+                    "Stanford found that the most digitized occupations (software development, data analysis) show the strongest AI displacement effects."
+                ),
+            },
+            "medium": {
+                "zh": (
+                    "您的工作混合了数字和线下环节。哈佛/BCG 的研究表明，这种混合模式提供了天然的缓冲——"
+                    "AI 可以接管数字化部分，但线下沟通和非数字任务构成了 AI 无法逾越的「物理断层」。"
+                    "关键在于：您在数字部分的效率可以被 AI 大幅提升，但线下部分的价值反而会因此凸显。"
+                ),
+                "en": (
+                    "Your work mixes digital and offline components. HBS/BCG research shows this hybrid mode provides a natural buffer — "
+                    "AI can take over the digital parts, but offline communication and non-digital tasks create a 'physical gap' AI cannot cross. "
+                    "Key insight: AI can dramatically boost your digital efficiency, but your offline value becomes even more prominent as a result."
+                ),
+            },
+            "low": {
+                "zh": (
+                    "您的工作几乎不依赖电脑。Anthropic 的 API 使用数据中，完全离线的职业几乎不存在任何自动化痕迹。"
+                    "斯坦福的研究将此描述为「数字化盲区」——不是因为 AI 做不好，而是因为工作本身不在数字化的管辖范围内。"
+                    "在 AI 时代，物理世界中的工作反而成为最稳固的就业基石。"
+                ),
+                "en": (
+                    "Your work barely involves computers. Anthropic's API usage data shows virtually no automation traces for fully offline occupations. "
+                    "Stanford describes this as a 'digital blind spot' — not because AI isn't good enough, but because the work itself is outside the jurisdiction of digitization. "
+                    "In the AI era, work in the physical world becomes the most stable employment foundation."
+                ),
+            },
+        },
+    },
+
+    # ── Q3: 人际复杂度 ──
+    2: {
+        "title_zh": "人际复杂度",
+        "title_en": "Interpersonal Complexity",
+        "tiers": {
+            "high": {
+                "zh": (
+                    "您的工作以独立作业为主，日常几乎不需要与他人深度互动。Anthropic 的数据显示，"
+                    "独立性强、人际需求低的任务正是 AI 自动化覆盖率最高的领域——"
+                    "因为没有复杂的人际变量，AI 可以完整地模拟输入-输出流程。"
+                ),
+                "en": (
+                    "Your work is primarily independent with minimal daily interpersonal interaction. Anthropic's data shows "
+                    "that independent, low-interpersonal tasks have the highest AI automation coverage — "
+                    "without complex human variables, AI can fully simulate the input-output pipeline."
+                ),
+            },
+            "medium": {
+                "zh": (
+                    "您在固定团队中进行常规协作。哈佛/BCG 的研究发现，这种结构化的团队互动是人机协作的最佳场景——"
+                    "AI 可以承担信息收集和初步分析，而您专注于团队内的判断、共识和微调。"
+                    "斯坦福的研究补充道：团队内部的「信任默契」是 AI 难以复制的隐性资产。"
+                ),
+                "en": (
+                    "You collaborate routinely within a fixed team. HBS/BCG found this structured team interaction is the ideal scenario for human-AI collaboration — "
+                    "AI handles information gathering and preliminary analysis while you focus on judgment, consensus, and fine-tuning within the team. "
+                    "Stanford adds: the 'trust chemistry' within teams is a tacit asset AI cannot replicate."
+                ),
+            },
+            "low": {
+                "zh": (
+                    "您的工作高度依赖大规模或深度的人际互动。无论是面对大量客户、学生、患者，"
+                    "还是需要极强的同理心和情绪感知，这些都完全超出 AI 的能力范围。"
+                    "哈佛/BCG 的研究将此归类为「前沿之外」——AI 不仅做不到，甚至无法理解这类工作的本质。"
+                ),
+                "en": (
+                    "Your work depends heavily on large-scale or deep interpersonal interaction. Whether facing numerous clients, students, or patients, "
+                    "or requiring strong empathy and emotional sensitivity — all of this is entirely beyond AI's capabilities. "
+                    "HBS/BCG classifies this as 'outside the frontier' — AI not only can't do it, but can't even comprehend the nature of such work."
+                ),
+            },
+        },
+    },
+
+    # ── Q4: 产出形式 ──
+    3: {
         "title_zh": "产出形式",
         "title_en": "Output Form",
         "tiers": {
@@ -94,8 +182,8 @@ DIMENSION_EXPLANATIONS = {
         },
     },
 
-    # ── Q3: 知识类型 ──
-    2: {
+    # ── Q5: 知识类型 ──
+    4: {
         "title_zh": "知识类型",
         "title_en": "Knowledge Type",
         "tiers": {
@@ -136,8 +224,8 @@ DIMENSION_EXPLANATIONS = {
         },
     },
 
-    # ── Q4: 委托能力 ──
-    3: {
+    # ── Q6: 委托能力 ──
+    5: {
         "title_zh": "委托能力",
         "title_en": "Task Delegability",
         "tiers": {
@@ -178,8 +266,8 @@ DIMENSION_EXPLANATIONS = {
         },
     },
 
-    # ── Q5: 容错率 ──
-    4: {
+    # ── Q7: 容错率 ──
+    6: {
         "title_zh": "容错率",
         "title_en": "Error Tolerance",
         "tiers": {
@@ -224,8 +312,8 @@ DIMENSION_EXPLANATIONS = {
         },
     },
 
-    # ── Q6: 职级定位 ──
-    5: {
+    # ── Q8: 职级定位 ──
+    7: {
         "title_zh": "职级定位",
         "title_en": "Career Stage",
         "tiers": {
@@ -337,7 +425,43 @@ STUDY_EXPLANATIONS = {
     },
 
     # ──────────────────────────────────────────────
-    # Dimension 2: Output Form (产出形式)
+    # Dimension 2: Digital Exposure (数字化暴露)
+    # ──────────────────────────────────────────────
+    "digital_exposure": {
+        "anthropic": {
+            "zh": "Anthropic 的经济指数数据直接证实了数字化暴露度与 AI 渗透率之间的强相关。在完全数字化的工作流程中（如编程、数据分析、内容创作），API 调用覆盖率可达 35%-75%。而在线下为主的职业中，AI 的可观测渗透几乎为零。数字化程度本质上决定了 AI 的「可达性」——你的工作越数字化，AI 就越容易到达。",
+            "en": "Anthropic's Economic Index data directly confirms the strong correlation between digital exposure and AI penetration. In fully digitized workflows (programming, data analysis, content creation), API call coverage reaches 35%-75%. In primarily offline occupations, AI's observable penetration is near zero. Digital exposure essentially determines AI's 'reachability' — the more digital your work, the easier it is for AI to reach.",
+        },
+        "stanford": {
+            "zh": "斯坦福的研究发现，就业下降最严重的职业群体恰恰是那些工作流程高度数字化的岗位。Brynjolfsson 指出，数字化是 AI 替代的「先决条件」——AI 首先需要能够「看到」你的工作输入和产出，才能学习和替代它。完全在物理世界中进行的工作，AI 甚至无法开始学习。",
+            "en": "Stanford's study found that the occupations with the steepest employment declines are precisely those with highly digitized workflows. Brynjolfsson argues digitization is the 'prerequisite' for AI replacement — AI must first be able to 'see' your work inputs and outputs before it can learn and replicate them. Work conducted entirely in the physical world is something AI cannot even begin to learn.",
+        },
+        "harvard_bcg": {
+            "zh": "哈佛/BCG 的实验本身就是在完全数字化的任务上进行的——所有 18 项咨询任务的输入和输出都在电脑上完成。研究发现的 40%+ 质量提升和 25%+ 速度提升，全部建立在数字化工作流的前提上。这暗示了一个关键推论：如果你的工作不在电脑上发生，AI 的提效空间就极为有限。",
+            "en": "The Harvard/BCG experiment itself was conducted on entirely digital tasks — all 18 consulting tasks had inputs and outputs completed on computers. The 40%+ quality gains and 25%+ speed improvements all depend on digitized workflows. This implies a key corollary: if your work doesn't happen on a computer, AI's efficiency gains are extremely limited.",
+        },
+    },
+
+    # ──────────────────────────────────────────────
+    # Dimension 3: Interpersonal Complexity (人际复杂度)
+    # ──────────────────────────────────────────────
+    "interpersonal_complexity": {
+        "anthropic": {
+            "zh": "Anthropic 的数据揭示了一个清晰的规律：人际互动密度越低的岗位，AI 自动化率越高。在独立作业为主的编程岗位中，自动化比例最高；而在需要频繁人际交互的教育、咨询类岗位中，增强比例高达 75%。AI 擅长处理人与机器之间的信息流，但无法替代人与人之间的情感流。",
+            "en": "Anthropic's data reveals a clear pattern: the lower the interpersonal interaction density, the higher the AI automation rate. Programming roles with primarily independent work show the highest automation rates, while education and counseling roles requiring frequent interpersonal interaction show augmentation rates up to 75%. AI excels at processing information flow between humans and machines, but cannot replace emotional flow between people.",
+        },
+        "stanford": {
+            "zh": "斯坦福研究发现，AI 对就业冲击最小的职业恰恰是人际互动最密集的——护理人员、社会工作者、教师等。Brynjolfsson 解释说，这些工作依赖的「社会智能」（读人、共情、应变）是当前 AI 最薄弱的环节，也是最难被训练数据覆盖的领域。人际复杂度本身就是一道强大的 AI 屏障。",
+            "en": "Stanford found that occupations least impacted by AI are precisely those with the most intensive interpersonal interaction — healthcare workers, social workers, teachers. Brynjolfsson explains that the 'social intelligence' these jobs require (reading people, empathy, adaptability) is current AI's weakest link and the hardest area to cover with training data. Interpersonal complexity itself is a powerful AI barrier.",
+        },
+        "harvard_bcg": {
+            "zh": "哈佛/BCG 的研究间接证实了这一点：实验中所有任务都是个人独立完成的，不涉及跨部门博弈、客户安抚或团队冲突调解。研究者承认，「现实世界中需要多方利益协调的任务」完全超出了当前实验的评估范围。这暗示了一个重要的盲区：AI 的「前沿」概念本身就排除了复杂人际场景。",
+            "en": "The Harvard/BCG study indirectly confirms this: all experimental tasks were completed individually, without cross-department negotiations, client de-escalation, or team conflict mediation. Researchers acknowledged that 'real-world tasks requiring multi-stakeholder coordination' fell entirely outside their evaluation scope. This reveals an important blind spot: AI's 'frontier' concept itself excludes complex interpersonal scenarios.",
+        },
+    },
+
+    # ──────────────────────────────────────────────
+    # Dimension 4: Output Form (产出形式)
     # ──────────────────────────────────────────────
     "output_form": {
         "anthropic": {
@@ -391,7 +515,7 @@ STUDY_EXPLANATIONS = {
     },
 
     # ──────────────────────────────────────────────
-    # Dimension 3: Knowledge Type (知识类型)
+    # Dimension 5: Knowledge Type (知识类型)
     # ──────────────────────────────────────────────
     "knowledge_type": {
         "anthropic": {
@@ -453,7 +577,7 @@ STUDY_EXPLANATIONS = {
     },
 
     # ──────────────────────────────────────────────
-    # Dimension 4: Task Delegability (委托能力)
+    # Dimension 6: Task Delegability (委托能力)
     # ──────────────────────────────────────────────
     "task_delegability": {
         "anthropic": {
@@ -511,7 +635,7 @@ STUDY_EXPLANATIONS = {
     },
 
     # ──────────────────────────────────────────────
-    # Dimension 5: Error Tolerance (容错率)
+    # Dimension 7: Error Tolerance (容错率)
     # ──────────────────────────────────────────────
     "error_tolerance": {
         "anthropic": {
@@ -572,7 +696,7 @@ STUDY_EXPLANATIONS = {
     },
 
     # ──────────────────────────────────────────────
-    # Dimension 6: Career Stage (职级定位)
+    # Dimension 8: Career Stage (职级定位)
     # ──────────────────────────────────────────────
     "career_stage": {
         "anthropic": {
@@ -634,12 +758,14 @@ STUDY_EXPLANATIONS = {
 
 # Ordered list of dimension keys for STUDY_EXPLANATIONS (matches breakdown array order)
 DIMENSION_KEYS = [
-    "job_type",           # idx 0 - Q1
-    "output_form",        # idx 1 - Q2
-    "knowledge_type",     # idx 2 - Q3
-    "task_delegability",  # idx 3 - Q4
-    "error_tolerance",    # idx 4 - Q5
-    "career_stage",       # idx 5 - Q6
+    "job_type",               # idx 0 - Q1
+    "digital_exposure",       # idx 1 - Q2 (NEW)
+    "interpersonal_complexity", # idx 2 - Q3 (NEW)
+    "output_form",            # idx 3 - Q4
+    "knowledge_type",         # idx 4 - Q5
+    "task_delegability",      # idx 5 - Q6
+    "error_tolerance",        # idx 6 - Q7
+    "career_stage",           # idx 7 - Q8
 ]
 
 # Study metadata for citation display in UI

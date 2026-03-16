@@ -309,25 +309,25 @@ OVERRIDE_JOBS = {
 }
 
 # ── Consistency rules ──
-# If Q1 job belongs to a group, warn if certain Q2-Q6 answers seem contradictory
+# If Q1 job belongs to a group, warn if certain Q2-Q8 answers seem contradictory
 # Format: { job_group: [ (question_id, answer_label, warning_zh, warning_en) ] }
 CONSISTENCY_WARNINGS = {
     # Tech/office jobs selecting "physical output"
     "tech": [
-        (2, "D", "您选择的是技术类岗位，但交付物选择了实体/物理成果，请确认是否符合您的实际情况。",
+        (4, "D", "您选择的是技术类岗位，但交付物选择了实体/物理成果，请确认是否符合您的实际情况。",
          "You selected a tech role but chose physical output — please confirm this matches your situation."),
     ],
     "finance": [
-        (2, "D", "您选择的是金融类岗位，但交付物选择了实体/物理成果，请确认是否符合您的实际情况。",
+        (4, "D", "您选择的是金融类岗位，但交付物选择了实体/物理成果，请确认是否符合您的实际情况。",
          "You selected a finance role but chose physical output — please confirm this matches your situation."),
     ],
     # Physical jobs selecting "standardized digital output"
     "manufacturing": [
-        (2, "A", "您选择的是体力劳动类岗位，但交付物选择了标准化信息产出，请确认是否符合您的实际情况。",
+        (4, "A", "您选择的是体力劳动类岗位，但交付物选择了标准化信息产出，请确认是否符合您的实际情况。",
          "You selected a physical labor role but chose standardized digital output — please confirm this matches your situation."),
     ],
     "medical": [
-        (2, "A", "您选择的是医疗类岗位，但交付物选择了标准化信息产出。如果您的工作确实以文档为主（如病历管理），可以忽略此提示。",
+        (4, "A", "您选择的是医疗类岗位，但交付物选择了标准化信息产出。如果您的工作确实以文档为主（如病历管理），可以忽略此提示。",
          "You selected a medical role but chose standardized digital output. If your work is indeed document-focused (e.g., medical records), you can ignore this."),
     ],
 }

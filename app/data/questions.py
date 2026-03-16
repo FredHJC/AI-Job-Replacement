@@ -1,6 +1,72 @@
 QUESTIONS = [
     {
         "id": 2,
+        "text_zh": "您每天在电脑前工作的时间大约是多久？",
+        "text_en": "How much of your workday is spent in front of a computer?",
+        "subtitle_zh": "考察工作的数字化暴露程度",
+        "subtitle_en": "Assessing digital exposure level",
+        "options": [
+            {
+                "label": "A",
+                "text_zh": "<strong>几乎全天（8小时以上）</strong>：工作完全依赖电脑、网络和数字系统。",
+                "text_en": "<strong>Nearly all day (8+ hours)</strong>: work relies entirely on computers, networks, and digital systems.",
+                "score": 4,
+            },
+            {
+                "label": "B",
+                "text_zh": "<strong>大半天（4-8小时）</strong>：工作以数字处理为主，辅以部分线下沟通或非数字任务。",
+                "text_en": "<strong>Most of the day (4-8 hours)</strong>: primarily digital work, supplemented by some offline communication or non-digital tasks.",
+                "score": 3,
+            },
+            {
+                "label": "C",
+                "text_zh": "<strong>一小部分（1-4小时）</strong>：只有收发邮件或简单记录时需要用电脑，主要工作在线下。",
+                "text_en": "<strong>A small portion (1-4 hours)</strong>: computer use limited to emails or simple records — most work happens offline.",
+                "score": 2,
+            },
+            {
+                "label": "D",
+                "text_zh": "<strong>几乎不用（1小时以下）</strong>：工作完全在物理现实中进行。",
+                "text_en": "<strong>Almost never (under 1 hour)</strong>: work is conducted entirely in the physical world.",
+                "score": 1,
+            },
+        ],
+    },
+    {
+        "id": 3,
+        "text_zh": "您每天在工作中需要进行实质性沟通、打交道的人数大约是多少？",
+        "text_en": "How many people do you substantively communicate or interact with daily at work?",
+        "subtitle_zh": "考察人际互动的复杂度与深度",
+        "subtitle_en": "Assessing interpersonal interaction complexity and depth",
+        "options": [
+            {
+                "label": "A",
+                "text_zh": "<strong>极少（0-3人）</strong>：主要独立面对电脑或机器完成单人任务。",
+                "text_en": "<strong>Very few (0-3 people)</strong>: mainly working independently facing a computer or machine.",
+                "score": 4,
+            },
+            {
+                "label": "B",
+                "text_zh": "<strong>少数（4-10人）</strong>：主要在固定的小团队内部进行常规沟通与协作。",
+                "text_en": "<strong>A few (4-10 people)</strong>: routine communication and collaboration within a small, fixed team.",
+                "score": 3,
+            },
+            {
+                "label": "C",
+                "text_zh": "<strong>较多（11-30人）</strong>：频繁涉及跨部门协调、外部客户沟通或解决人际冲突。",
+                "text_en": "<strong>Many (11-30 people)</strong>: frequent cross-department coordination, external client communication, or conflict resolution.",
+                "score": 2,
+            },
+            {
+                "label": "D",
+                "text_zh": "<strong>极多（30人以上）或要求深度情感互动</strong>：需要高频面对大量人群（如线下门店、教师），或需要极强的同理心和情绪安抚能力（如心理咨询、医疗护理）。",
+                "text_en": "<strong>Very many (30+) or deep emotional interaction required</strong>: frequent contact with large groups (e.g., retail, teaching) or requiring strong empathy and emotional support skills (e.g., therapy, healthcare).",
+                "score": 1,
+            },
+        ],
+    },
+    {
+        "id": 4,
         "text_zh": "您每天的工作成果，最终以什么形式交付或呈现？",
         "text_en": "In what form is your daily work ultimately delivered or presented?",
         "subtitle_zh": "考察工作产出的可数字化程度",
@@ -33,7 +99,7 @@ QUESTIONS = [
         ],
     },
     {
-        "id": 3,
+        "id": 5,
         "text_zh": "遇到工作中的新问题或突发状况时，您主要依靠什么来应对？",
         "text_en": "When facing a new problem or unexpected situation at work, what do you primarily rely on?",
         "subtitle_zh": "考察显性知识 vs 隐性知识",
@@ -66,7 +132,7 @@ QUESTIONS = [
         ],
     },
     {
-        "id": 4,
+        "id": 6,
         "text_zh": '假设有一个"学习能力极强、但完全没有实操经验"的助手（可类比当前 AI），它能独立完成你多少比例的日常工作？',
         "text_en": "Imagine a helper who learns incredibly fast but has zero real-world hands-on experience (think: current AI). What percentage of your daily work could it handle independently?",
         "subtitle_zh": "考察任务的可委托程度",
@@ -99,7 +165,7 @@ QUESTIONS = [
         ],
     },
     {
-        "id": 5,
+        "id": 7,
         "text_zh": "如果您在工作中出现失误，通常会带来什么后果？",
         "text_en": "If you make a mistake at work, what are the typical consequences?",
         "subtitle_zh": "考察容错率与责任边界",
@@ -132,7 +198,7 @@ QUESTIONS = [
         ],
     },
     {
-        "id": 6,
+        "id": 8,
         "text_zh": "您目前处于职业发展的哪个阶段？",
         "text_en": "What stage of your career are you currently at?",
         "subtitle_zh": "考察经验壁垒与不可替代性",

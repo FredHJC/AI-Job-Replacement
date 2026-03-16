@@ -25,18 +25,18 @@ def test_result_page():
 def test_score_api_valid():
     r = client.post("/api/score", json={
         "job_id": "programmer",
-        "q2": "A", "q3": "A", "q4": "A", "q5": "A", "q6": "A",
+        "q2": "A", "q3": "A", "q4": "A", "q5": "A", "q6": "A", "q7": "A", "q8": "A",
     })
     assert r.status_code == 200
     data = r.json()
-    assert data["total_score"] == 95
+    assert data["total_score"] == 96
     assert data["risk_level"] == "extreme"
 
 
 def test_score_api_invalid_option():
     r = client.post("/api/score", json={
         "job_id": "programmer",
-        "q2": "X", "q3": "A", "q4": "A", "q5": "A", "q6": "A",
+        "q2": "X", "q3": "A", "q4": "A", "q5": "A", "q6": "A", "q7": "A", "q8": "A",
     })
     assert r.status_code == 422
 

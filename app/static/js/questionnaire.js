@@ -8,7 +8,7 @@ document.addEventListener('alpine:init', () => {
         consistencyWarnings: window.__QUIZ_DATA__.consistencyWarnings,
 
         // State
-        currentStep: 0,       // 0 = Q1 (job), 1-5 = Q2-Q6, 6 = submitting
+        currentStep: 0,       // 0 = Q1 (job), 1-7 = Q2-Q8, 8 = submitting
         answers: {},           // { q1: jobId, q2: 'A', q3: 'B', ... }
         selectedJob: null,
         searchQuery: '',
@@ -18,7 +18,7 @@ document.addEventListener('alpine:init', () => {
         pendingAction: null,   // callback to execute if user confirms warning
 
         // Computed
-        get totalSteps() { return 6; },
+        get totalSteps() { return 8; },
 
         get progress() {
             return Math.round((this.currentStep / this.totalSteps) * 100);
@@ -124,7 +124,7 @@ document.addEventListener('alpine:init', () => {
 
         goNext() {
             if (this.transitioning) return;
-            if (this.currentStep < 5) {
+            if (this.currentStep < 7) {
                 this.transitioning = true;
                 this.currentStep++;
                 setTimeout(() => {
@@ -146,10 +146,10 @@ document.addEventListener('alpine:init', () => {
 
         async submitOverride() {
             // For override jobs, send minimal answers to get the override result
-            this.currentStep = 6;
+            this.currentStep = 8;
             const payload = {
                 job_id: this.answers.q1,
-                q2: 'A', q3: 'A', q4: 'A', q5: 'A', q6: 'A', // dummy values
+                q2: 'A', q3: 'A', q4: 'A', q5: 'A', q6: 'A', q7: 'A', q8: 'A', // dummy values
             };
             try {
                 const resp = await fetch('/api/score', {
@@ -171,14 +171,13 @@ document.addEventListener('alpine:init', () => {
         },
 
         async submit() {
-            this.currentStep = 6;
+            this.currentStep = 8;
             const payload = {
                 job_id: this.answers.q1,
-                q2: this.answers.q2,
-                q3: this.answers.q3,
-                q4: this.answers.q4,
-                q5: this.answers.q5,
-                q6: this.answers.q6,
+                q2: this.answers.q2, q3: this.answers.q3,
+                q4: this.answers.q4, q5: this.answers.q5,
+                q6: this.answers.q6, q7: this.answers.q7,
+                q8: this.answers.q8,
             };
 
             try {
@@ -196,7 +195,7 @@ document.addEventListener('alpine:init', () => {
                 }
             } catch (err) {
                 console.error('Submit error:', err);
-                this.currentStep = 5;
+                this.currentStep = 7;
             }
         },
     }));
