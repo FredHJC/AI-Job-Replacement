@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- html2canvas for screenshot -->
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script>
     window.__EXPLANATIONS__ = {{ explanations | tojson }};
     window.__SERVER_RESULT__ = {{ server_result | tojson }};
@@ -145,10 +143,9 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
         </button>
-        <!-- Image — try blob URL first (iOS long-press save), fall back to data URL -->
+        <!-- Image from server (real URL = iOS long-press save works) -->
         <div class="flex-1 flex items-center justify-center w-full px-6 py-12">
-            <img :src="imageBlobUrl || imageDataUrl"
-                 @error="imageBlobUrl = ''"
+            <img :src="shareImageUrl"
                  class="max-w-full max-h-full rounded-xl shadow-2xl"
                  style="-webkit-touch-callout: default; -webkit-user-select: auto; user-select: auto"
                  alt="AI Risk Result">

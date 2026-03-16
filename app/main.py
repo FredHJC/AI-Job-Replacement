@@ -1,7 +1,7 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, Response
 
 from app.config import TEMPLATES_DIR, STATIC_DIR
 from app.data.jobs import JOBS, JOB_GROUPS, OVERRIDE_JOBS, CONSISTENCY_WARNINGS
@@ -54,6 +54,20 @@ async def score(answers: QuizAnswers):
     )
 
     return {**result_dict, "result_id": sid}
+
+
+@app.get("/result/{result_id}/image.png")
+async def result_image(result_id: str, lang: str = "zh"):
+    submission = get_submission(result_id)
+    if not submission:
+        raise HTTPException(status_code=404, detail="Result not found")
+    from app.image import generate_share_image
+    image_bytes = generate_share_image(submission["result"], lang)
+    return Response(
+        content=image_bytes,
+        media_type="image/png",
+        headers={"Cache-Control": "public, max-age=86400"},
+    )
 
 
 @app.get("/result/{result_id}", response_class=HTMLResponse)
