@@ -66,6 +66,7 @@ JOBS = [
     # Tier 7 (7分) — 纯重复性工作
     {"id": "gov_clerk", "name_zh": "政府办事员/窗口人员", "name_en": "Government Clerk", "group": "government", "category": "A", "score": 7},
     {"id": "gov_archives", "name_zh": "档案管理员", "name_en": "Government Archivist", "group": "government", "category": "A", "score": 7},
+    {"id": "toll_collector", "name_zh": "高速收费员/停车场管理员", "name_en": "Toll Booth Operator", "group": "government", "category": "A", "score": 7},
     # Tier 5 (5分) — 结构化+经验
     {"id": "civil_servant", "name_zh": "公务员(科员)", "name_en": "Civil Servant (Officer)", "group": "government", "category": "B", "score": 5},
     {"id": "party_secretary", "name_zh": "党务工作者", "name_en": "Party Affairs Officer", "group": "government", "category": "B", "score": 5},
@@ -77,8 +78,13 @@ JOBS = [
     {"id": "prosecutor", "name_zh": "检察官", "name_en": "Prosecutor", "group": "government", "category": "C", "score": 2},
     {"id": "diplomat", "name_zh": "外交官", "name_en": "Diplomat", "group": "government", "category": "C", "score": 2},
     {"id": "gov_director", "name_zh": "政府部门领导", "name_en": "Government Director", "group": "government", "category": "C", "score": 2},
+    {"id": "community_worker", "name_zh": "社区工作者/网格员", "name_en": "Community Worker", "group": "government", "category": "C", "score": 3},
+    {"id": "city_inspector", "name_zh": "城管/综合执法人员", "name_en": "City Inspector", "group": "government", "category": "C", "score": 3},
+    {"id": "postal_worker", "name_zh": "邮政员工/邮递员", "name_en": "Postal Worker", "group": "government", "category": "C", "score": 3},
     # Tier 1 (1分) — 物理/生命安全
     {"id": "military", "name_zh": "军人", "name_en": "Military Personnel", "group": "government", "category": "D", "score": 1},
+    {"id": "police_officer", "name_zh": "警察", "name_en": "Police Officer", "group": "government", "category": "D", "score": 1},
+    {"id": "firefighter", "name_zh": "消防员", "name_en": "Firefighter", "group": "government", "category": "D", "score": 1},
 
     # ══════════════════════════════════════════
     #  医疗 / 健康
@@ -89,6 +95,7 @@ JOBS = [
     # Tier 5 (5分) — 结构化+经验
     {"id": "pharmacist", "name_zh": "药剂师", "name_en": "Pharmacist", "group": "medical", "category": "B", "score": 5},
     {"id": "radiologist_tech", "name_zh": "放射科技师", "name_en": "Radiology Technician", "group": "medical", "category": "B", "score": 5},
+    {"id": "optometrist", "name_zh": "验光师/配镜师", "name_en": "Optometrist / Optician", "group": "medical", "category": "B", "score": 5},
     # Tier 3 (3分) — 人际/策略主导
     {"id": "psychologist", "name_zh": "心理咨询师/治疗师", "name_en": "Psychologist / Therapist", "group": "medical", "category": "C", "score": 3},
     {"id": "physician", "name_zh": "内科医生", "name_en": "Physician", "group": "medical", "category": "C", "score": 3},
@@ -101,6 +108,7 @@ JOBS = [
     {"id": "physical_therapist", "name_zh": "康复治疗师", "name_en": "Physical Therapist", "group": "medical", "category": "D", "score": 1},
     {"id": "dentist", "name_zh": "牙医", "name_en": "Dentist", "group": "medical", "category": "D", "score": 1},
     {"id": "lab_technician", "name_zh": "检验技师", "name_en": "Laboratory Technician", "group": "medical", "category": "D", "score": 1},
+    {"id": "paramedic", "name_zh": "120急救员/担架员", "name_en": "Paramedic / EMT", "group": "medical", "category": "D", "score": 1},
 
     # ══════════════════════════════════════════
     #  教育
@@ -114,6 +122,8 @@ JOBS = [
     {"id": "tutor", "name_zh": "家教/辅导老师", "name_en": "Tutor", "group": "education", "category": "C", "score": 3},
     {"id": "kindergarten_teacher", "name_zh": "幼儿园教师", "name_en": "Kindergarten Teacher", "group": "education", "category": "C", "score": 3},
     {"id": "special_ed_teacher", "name_zh": "特殊教育教师", "name_en": "Special Education Teacher", "group": "education", "category": "C", "score": 3},
+    {"id": "school_counselor", "name_zh": "学校教务员/辅导员", "name_en": "School Counselor / Admin", "group": "education", "category": "C", "score": 3},
+    {"id": "driving_instructor", "name_zh": "驾校教练", "name_en": "Driving Instructor", "group": "education", "category": "C", "score": 3},
 
     # ══════════════════════════════════════════
     #  法律
@@ -165,6 +175,7 @@ JOBS = [
     {"id": "customer_service", "name_zh": "客服代表", "name_en": "Customer Service Rep", "group": "service", "category": "A", "score": 7},
     {"id": "telemarketer", "name_zh": "电话销售", "name_en": "Telemarketer", "group": "service", "category": "A", "score": 7},
     {"id": "cashier", "name_zh": "收银员", "name_en": "Cashier", "group": "service", "category": "A", "score": 7},
+    {"id": "retail_salesperson", "name_zh": "实体店导购/店员", "name_en": "Retail Salesperson", "group": "service", "category": "A", "score": 6},
     # Tier 5 (5分) — 结构化+经验
     {"id": "marketing_specialist", "name_zh": "市场营销专员", "name_en": "Marketing Specialist", "group": "service", "category": "B", "score": 5},
     {"id": "sales_rep", "name_zh": "销售代表", "name_en": "Sales Representative", "group": "service", "category": "B", "score": 5},
@@ -177,8 +188,9 @@ JOBS = [
     {"id": "exec_recruiter", "name_zh": "高管猎头", "name_en": "Executive Recruiter", "group": "service", "category": "C", "score": 3},
     {"id": "social_worker", "name_zh": "社会工作者", "name_en": "Social Worker", "group": "service", "category": "C", "score": 3},
     {"id": "retail_manager", "name_zh": "门店经理", "name_en": "Retail Store Manager", "group": "service", "category": "C", "score": 3},
+    {"id": "property_manager", "name_zh": "物业管家/小区经理", "name_en": "Property Manager", "group": "service", "category": "C", "score": 3},
+    {"id": "transit_attendant", "name_zh": "火车/高铁/地铁乘务员", "name_en": "Transit Attendant", "group": "service", "category": "C", "score": 3},
     # Tier 1 (1分) — 物理/生命安全
-    {"id": "police_officer", "name_zh": "警察", "name_en": "Police Officer", "group": "service", "category": "D", "score": 1},
     {"id": "server_food", "name_zh": "餐厅服务员", "name_en": "Restaurant Server", "group": "service", "category": "D", "score": 1},
     {"id": "security_guard", "name_zh": "保安", "name_en": "Security Guard", "group": "service", "category": "D", "score": 1},
     {"id": "hairdresser", "name_zh": "理发师/美发师", "name_en": "Hairdresser / Barber", "group": "service", "category": "D", "score": 1},
@@ -189,6 +201,8 @@ JOBS = [
     {"id": "massage_therapist", "name_zh": "按摩师/推拿师", "name_en": "Massage Therapist", "group": "service", "category": "D", "score": 1},
     {"id": "beautician", "name_zh": "美容师/化妆师", "name_en": "Beautician / Makeup Artist", "group": "service", "category": "D", "score": 1},
     {"id": "yoga_instructor", "name_zh": "瑜伽教练", "name_en": "Yoga Instructor", "group": "service", "category": "D", "score": 1},
+    {"id": "nanny_babysitter", "name_zh": "保姆/月嫂/育儿嫂", "name_en": "Nanny / Babysitter", "group": "service", "category": "D", "score": 1},
+    {"id": "tailor_cobbler", "name_zh": "裁缝/修鞋/修表匠", "name_en": "Tailor / Cobbler", "group": "service", "category": "D", "score": 1},
 
     # ══════════════════════════════════════════
     #  管理 / 行政
@@ -197,12 +211,15 @@ JOBS = [
     {"id": "admin_assistant", "name_zh": "行政助理", "name_en": "Administrative Assistant", "group": "admin", "category": "A", "score": 7},
     {"id": "librarian_clerk", "name_zh": "图书管理员", "name_en": "Library Clerk", "group": "admin", "category": "A", "score": 7},
     {"id": "warehouse_clerk", "name_zh": "仓库管理员", "name_en": "Warehouse Clerk", "group": "admin", "category": "A", "score": 7},
+    {"id": "office_clerk", "name_zh": "普通文员/办公室职员", "name_en": "Office Clerk", "group": "admin", "category": "A", "score": 7},
+    {"id": "receptionist", "name_zh": "前台接待员", "name_en": "Receptionist", "group": "admin", "category": "A", "score": 7},
     # Tier 5 (5分) — 结构化+经验
     {"id": "project_manager", "name_zh": "项目经理", "name_en": "Project Manager", "group": "admin", "category": "B", "score": 5},
     {"id": "business_analyst", "name_zh": "商业分析师", "name_en": "Business Analyst", "group": "admin", "category": "B", "score": 5},
     {"id": "hr_specialist", "name_zh": "人力资源专员", "name_en": "HR Specialist", "group": "admin", "category": "B", "score": 5},
     {"id": "supply_chain_mgr", "name_zh": "供应链经理", "name_en": "Supply Chain Manager", "group": "admin", "category": "B", "score": 4},
     {"id": "ops_manager", "name_zh": "运营经理", "name_en": "Operations Manager", "group": "admin", "category": "B", "score": 4},
+    {"id": "purchasing_agent", "name_zh": "采购员/买手", "name_en": "Purchasing Agent", "group": "admin", "category": "B", "score": 5},
     # Tier 3 (3分) — 人际/策略主导
     {"id": "management_consultant", "name_zh": "管理咨询顾问", "name_en": "Management Consultant", "group": "admin", "category": "C", "score": 3},
     {"id": "ceo", "name_zh": "CEO / 总经理", "name_en": "CEO / General Manager", "group": "admin", "category": "C", "score": 2},
@@ -212,11 +229,15 @@ JOBS = [
     # ══════════════════════════════════════════
     # Tier 7 (7分) — 纯重复性工作
     {"id": "assembly_worker", "name_zh": "流水线工人", "name_en": "Assembly Line Worker", "group": "manufacturing", "category": "A", "score": 7},
-    # Tier 3 (3分) — 人际/策略主导 — 交通物流
+    # Tier 5 (5分) — 结构化+经验
+    {"id": "quality_inspector", "name_zh": "工厂质检员/品控", "name_en": "Quality Control Inspector", "group": "manufacturing", "category": "B", "score": 5},
+    # Tier 3 (3分) — 交通物流
     {"id": "truck_driver", "name_zh": "卡车司机", "name_en": "Truck Driver", "group": "manufacturing", "category": "C", "score": 3},
     {"id": "courier", "name_zh": "快递员/外卖骑手", "name_en": "Courier / Delivery Rider", "group": "manufacturing", "category": "C", "score": 3},
     {"id": "taxi_driver", "name_zh": "出租车/网约车司机", "name_en": "Taxi / Rideshare Driver", "group": "manufacturing", "category": "C", "score": 3},
     {"id": "warehouse_worker", "name_zh": "仓库工人", "name_en": "Warehouse Worker", "group": "manufacturing", "category": "C", "score": 3},
+    {"id": "transit_driver", "name_zh": "公交车/长途客车司机", "name_en": "Bus / Transit Driver", "group": "manufacturing", "category": "C", "score": 3},
+    {"id": "forklift_operator", "name_zh": "叉车司机/厂区物流", "name_en": "Forklift Operator", "group": "manufacturing", "category": "C", "score": 3},
     # Tier 1 (1分) — 物理/生命安全 — 餐饮
     {"id": "chef", "name_zh": "厨师/炒锅师傅", "name_en": "Chef / Cook", "group": "manufacturing", "category": "D", "score": 1},
     {"id": "pastry_chef", "name_zh": "甜品师/烘焙师", "name_en": "Pastry Chef / Baker", "group": "manufacturing", "category": "D", "score": 1},
@@ -228,8 +249,8 @@ JOBS = [
     {"id": "plumber", "name_zh": "水管工", "name_en": "Plumber", "group": "manufacturing", "category": "D", "score": 1},
     {"id": "auto_mechanic", "name_zh": "汽车维修技师", "name_en": "Auto Mechanic", "group": "manufacturing", "category": "D", "score": 1},
     {"id": "welder", "name_zh": "焊工", "name_en": "Welder", "group": "manufacturing", "category": "D", "score": 1},
+    {"id": "hvac_technician", "name_zh": "空调/家电/暖通维修工", "name_en": "HVAC / Appliance Technician", "group": "manufacturing", "category": "D", "score": 1},
     # Tier 1 (1分) — 物理/生命安全 — 其他
-    {"id": "firefighter", "name_zh": "消防员", "name_en": "Firefighter", "group": "manufacturing", "category": "D", "score": 1},
     {"id": "pilot", "name_zh": "飞行员", "name_en": "Pilot", "group": "manufacturing", "category": "D", "score": 1},
     {"id": "farmer", "name_zh": "农民", "name_en": "Farmer", "group": "manufacturing", "category": "D", "score": 1},
     {"id": "miner", "name_zh": "矿工", "name_en": "Miner", "group": "manufacturing", "category": "D", "score": 1},
