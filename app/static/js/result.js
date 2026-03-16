@@ -158,7 +158,7 @@ document.addEventListener('alpine:init', () => {
                     const pad = idx % 2 === 0 ? 'padding-right:6px' : 'padding-left:6px';
                     dimensionHtml += "<div style='width:50%;display:flex;align-items:center;justify-content:space-between;padding:4px 0;box-sizing:border-box;" + pad + "'>"
                         + "<span style='font-size:11px;color:#6B6B6B;white-space:nowrap'>" + labels[idx] + "</span>"
-                        + "<span style='font-size:10px;font-weight:500;padding:3px 8px;border-radius:20px;display:inline-flex;align-items:center;justify-content:center;line-height:1;white-space:nowrap;" + tagStyle + "'>" + tag + "</span>"
+                        + "<span style='font-size:10px;font-weight:500;padding:2px 8px 3px;border-radius:20px;display:inline-flex;align-items:center;justify-content:center;line-height:1.3;white-space:nowrap;" + tagStyle + "'>" + tag + "</span>"
                         + "</div>";
                 });
                 dimensionHtml += "</div>";
