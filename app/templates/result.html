@@ -144,9 +144,10 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
         </button>
-        <!-- Image — blob URL for iOS long-press "Add to Photos" support -->
+        <!-- Image — try blob URL first (iOS long-press save), fall back to data URL -->
         <div class="flex-1 flex items-center justify-center w-full px-6 py-12">
-            <img :src="imageBlobUrl"
+            <img :src="imageBlobUrl || imageDataUrl"
+                 @error="imageBlobUrl = ''"
                  class="max-w-full max-h-full rounded-xl shadow-2xl"
                  style="-webkit-touch-callout: default; -webkit-user-select: auto; user-select: auto"
                  alt="AI Risk Result">
