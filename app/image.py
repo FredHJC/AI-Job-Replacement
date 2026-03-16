@@ -193,8 +193,8 @@ def generate_share_image(result: dict, lang: str = "zh") -> bytes:
 
     # Dimension breakdown
     if breakdown:
-        labels_zh = ["职业类型", "产出形式", "知识类型", "委托能力", "容错率", "职级定位"]
-        labels_en = ["Job Type", "Output Form", "Knowledge", "Delegation", "Tolerance", "Career Level"]
+        labels_zh = ["职业类型", "数字化暴露", "人际复杂度", "产出形式", "知识类型", "委托能力", "容错率", "职级定位"]
+        labels_en = ["Job Type", "Digital Exposure", "Interaction", "Output Form", "Knowledge", "Delegation", "Tolerance", "Career Level"]
         labels = labels_zh if zh else labels_en
         dt = y
         db = dt + dim_h
